@@ -1,0 +1,167 @@
+*, html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins,sans-serif;
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+.container-aaa {
+    background: black;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    display: flex;
+}
+
+
+
+.sisi-kiri {
+    background: white;
+    width: 45%;
+    height: 100vh;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kotak {
+    width: 100%;
+    max-width: 420px;
+    padding: 1.2rem;
+}
+
+.logo {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 3px;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.logo-1 {
+    color: #020202;
+}
+.logo-2 {
+    color: #262626;
+}
+.logo-3 {
+    color: #4b4b4b;
+}
+.logo-4 {
+    color: #6f6f6f;
+}
+.logo-5 {
+    color: #939393;
+}
+
+.welcome {
+    margin-bottom: 40px;
+}
+
+.welcome strong {
+    font-size: 20px;
+}
+
+.welcome p {
+    font-size: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#username {
+    height: 40px;
+    border-radius: 8px;
+    border: .5px solid grey;
+    outline: none;
+    padding: 0px 20px;
+    margin: 10px 0px;
+    transition: all .3s ease;
+}
+#password {
+    height: 40px;
+    border-radius: 8px;
+    border: .5px solid grey;
+    outline: none;
+    padding: 0px 20px;
+    margin: 10px 0px;
+    transition: all .3s ease;
+}
+
+.form-grup input::placeholder {
+    font-size: 15px;
+}
+.form-grup input:focus::placeholder {
+    color: rgb(150, 179, 241);
+}
+.form-grup input:focus  {
+    border: .5px solid rgb(73, 73, 249);
+    box-shadow: 0px 0px 20px rgb(150, 179, 241);
+}
+
+.forgot-remember {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+}
+
+.forgot-remember div {
+    display: flex;
+}
+
+.forgot-remember div input {
+    margin-right: 10px;
+}
+
+.forgot-remember a {
+    text-decoration: none;
+}
+
+.sejajar input {
+    margin-bottom: 16px;
+}
+
+.submit button {
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 9px;
+    background: #1170ed;
+    color: white;
+}
+
+
+.sisi-kanan img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.quotes {
+    font-weight: 500;
+    width: 65%;
+    height: 100vh;
+    color: white;
+    top: 45%;
+    /* left: 20%; */
+    position: absolute;
+    text-align: center;
+    z-index: 3;
+    background-color: transparent;
+}
+
+.quotes p {
+    letter-spacing: 2px;
+}
+
+
