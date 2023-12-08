@@ -7,17 +7,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="/tempatCSS/bootstrap/bootstrap.rtl.min.css"> -->
-    <link rel="stylesheet" href="/custom-css.css">
     <link rel="stylesheet" href="/tempatCSS/bootstrap/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="/custom-css.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"  rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-
-<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
         <div class="flex items-center justify-start rtl:justify-end">
@@ -59,7 +57,7 @@
             </div>
         </div>
     </div>
-</nav>
+    </nav>
 
 <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -120,43 +118,55 @@
     </div>
 </aside>
 
+
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <div class="container">
-            <form method="post" action="<?= base_url('dashboard/user/tambah') ?>">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control rounded-lg" id="username" name="username">
+            <h1 class="text-4xl text-blue-600 font-bold">Daftar Umpan Balik</h1>
+            <a href="<?= base_url('dashboard/kontak/tambah') ?>" class="btn btn-success my-4"><i class="fa-solid fa-plus"></i> Tambah</a>
+            <?php if(session()->getFlashdata('pesan')): ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan') ?>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control rounded-lg" id="password" name="password">
-                </div>
-                <div class="mb-3">
-                    <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control rounded-lg" id="nama" name="nama">
-                </div>
-                <div class="mb-3">
-                    <label for="level" class="form-label">Level</label>
-                    <select class="form-select rounded-lg" name="level" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="Member">Member</option>
-                        <option value="Writer">Writter</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                    <!-- <input type="text" class="form-control" id="level" name="level"> -->
-                </div>
-                <div class="d-flex mt-4">
-                    <button type="submit" name="submitEdit" class="btn btn-success mr-3 bg-green-500 hover:bg-green-700 border-none " onclick="return validateForm()">Submit</button>
-                    <a href="<?= base_url('dashboard/user') ?>" class="btn btn-primary">Kembali</a>
-                </div>
-
-            </form>
+            <?php endif; ?>
+            <table class="border-collapse border border-slate-500 mt-4 w-full">
+                <thead>
+                    <tr>
+                        <th class="border border-slate-600 text-center">ID</th>
+                        <th class="border border-slate-600 text-center">Username</th>
+                        <th class="border border-slate-600 text-center">Email</th>
+                        <th class="border border-slate-600 text-center">Subject</th>
+                        <th class="border border-slate-600 text-center">Pesan</th>
+                        <th class="border border-slate-600 text-center">Edit / Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        $no = 1;
+                        foreach($kontak as $jamal):
+                    ?>
+                    <tr>
+                        <td class="border border-slate-700 p-2"><?= $no ?></td>
+                        <td class="border border-slate-700 p-2"><?= $jamal['nama']?></td>
+                        <td class="border border-slate-700 p-2"><?= $jamal['email']?></td>
+                        <td class="border border-slate-700 p-2"><?= $jamal['subject'] ?></td>
+                        <td class="border border-slate-700 p-2"><?= $jamal['pesan'] ?></td>
+                        <td class="border border-slate-700 p-2 text-center">
+                            <a class="btn btn-success mb-2" href="<?= base_url('dashboard/kontak/edit/'.$jamal['id']) ?>"><i class="fa-solid fa-pencil"></i> Edit</a>
+                            <a class="btn btn-danger" href="<?= base_url('dashboard/kontak/delete/'.$jamal['id']) ?>"><i class="fa-solid fa-trash"></i> Hapus</a>
+                        </td>
+                    </tr>
+                    <?php $no++; endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <script src="/tempatJS/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="/custom-js.js"></script>
 </body>

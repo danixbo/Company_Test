@@ -37,8 +37,6 @@ class UserController extends BaseController
             // You can set a default value or show an error message
             $password = ''; // or $password = 'default_password';
         }
-        // Hash password menggunakan password_hash()
-        $password = password_hash($password, PASSWORD_BCRYPT);
 
         // Pemeriksaan apakah username sudah ada
         $model = new UserModel();
@@ -80,30 +78,30 @@ class UserController extends BaseController
     {
         $model = new UserModel();
 
-        // Validasi input
-        // $validationRules = [
-        //     'username' => 'required|is_unique[user.username,id,' . $id . ']',
-        //     'password' => 'required|min_length[8]',
-        //     'nama' => 'required',
-        //     'level' => 'required',
-        // ];
+        // Validasi input   
+        $validationRules = [
+            'username' => 'required|is_unique[user.username,id,' . $id . ']',
+            'password' => 'required|min_length[8]',
+            'nama' => 'required',
+            'level' => 'required',
+        ];
 
-        // $validationMessages = [
-        //     'username' => [
-        //         'required' => 'Harap isi username.',
-        //         'is_unique' => 'Username sudah digunakan. Pilih username lain.',
-        //     ],
-        //     'password' => [
-        //         'required' => 'Harap isi password.',
-        //         'min_length' => 'Password minimal harus 8 karakter.',
-        //     ],
-        //     'nama' => 'Harap isi nama.',
-        //     'level' => 'Harap pilih level.',
-        // ];
+        $validationMessages = [
+            'username' => [
+                'required' => 'Harap isi username.',
+                'is_unique' => 'Username sudah digunakan. Pilih username lain.',
+            ],
+            'password' => [
+                'required' => 'Harap isi password.',
+                'min_length' => 'Password minimal harus 8 karakter.',
+            ],
+            'nama' => 'Harap isi nama.',
+            'level' => 'Harap pilih level.',
+        ];
 
-        // if (!$this->validate($validationRules, $validationMessages)) {
-        //     return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
-        // }
+        if (!$this->validate($validationRules, $validationMessages)) {
+            return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
+        }
 
         $password = $this->request->getPost('password');
 
@@ -112,10 +110,9 @@ class UserController extends BaseController
             $password = '';
         }
         // Hash password baru
-        $password = password_hash($password, PASSWORD_DEFAULT);
         $data = [
             'username' => $this->request->getPost('username'),
-            'password' => $password,
+            'password' => $this->request->getPost('password'),
             'nama' => $this->request->getPost('nama'),
             'level' => $this->request->getPost('level'),
         ];

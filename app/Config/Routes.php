@@ -15,14 +15,14 @@ $routes->get('/register', 'HalamanController::register');
 
 // <------------------------------ DASHBOARD KONTAK ------------------------------>
 
-$routes->get('/dashboard', 'DashboardController::dashboard');
-$routes->get('/index.php/dashboard', 'DashboardController::index');
-$routes->get('/login/dashboard', 'DashboardController::loginDasboard');
-$routes->get('/dashboard/edit/(:num)', 'DashboardController::edit/$1');
-$routes->post('/dashboard/update/(:num)', 'DashboardController::update/$1');
-$routes->get('/dashboard/delete/(:num)', 'DashboardController::delete/$1');
-$routes->get('/dashboard/tambah', 'DashboardController::tambah');
-$routes->post('/dashboard/tambah', 'DashboardController::tambahFunction');
+$routes->get('/dashboard/kontak', 'DashboardController::dashboard');
+$routes->get('/index.php/dashboard/kontak', 'DashboardController::index');
+$routes->get('/login/kontak/dashboard', 'DashboardController::loginDasboard');
+$routes->get('/dashboard/kontak/edit/(:num)', 'DashboardController::edit/$1');
+$routes->post('/dashboard/kontak/update/(:num)', 'DashboardController::update/$1');
+$routes->get('/dashboard/kontak/delete/(:num)', 'DashboardController::delete/$1');
+$routes->get('/dashboard/kontak/tambah', 'DashboardController::tambah');
+$routes->post('/dashboard/kontak/tambah', 'DashboardController::tambahFunction');
 
 // <------------------------------ DASHBOARD USER ------------------------------>
 
@@ -38,3 +38,7 @@ $routes->post('/dashboard/user/update/(:num)', 'UserController::update/$1');
 $routes->get('/login', 'LoginController::index');
 $routes->post('/login/processLogin', 'LoginController::processLogin');
 $routes->get('/login/processLogin', 'LoginController::processLogin');
+
+// <------------------------------ LOGOUT ------------------------------>
+
+$routes->get('/logout', 'Logout::logout_haha');

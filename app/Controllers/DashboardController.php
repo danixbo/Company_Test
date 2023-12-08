@@ -8,7 +8,7 @@ class DashboardController extends BaseController
 {
 
     // <--------------------- DASHBOARD KONTAK --------------------->
-
+    protected $beforeFilters = ['auth'];
 
     public function loginDasboard()
     {
@@ -20,7 +20,7 @@ class DashboardController extends BaseController
         $model = new KontakModel();
         $data['kontak'] = $model->findAll();
 
-        return view('Dashboard/dashboard', $data);
+        return view('Dashboard/kontakDash', $data);
     }
 
     public function edit($id)
@@ -29,7 +29,7 @@ class DashboardController extends BaseController
         // ambil data berdasarkan primary key yang dikirim
         $data = $p->find($id);
 
-        return view('Dashboard/edit', ['data'=>$data]);
+        return view('Dashboard/editKontak', ['data'=>$data]);
     }
 
     public function update($id)
@@ -43,7 +43,7 @@ class DashboardController extends BaseController
         ];
 
         if ($model->update($id, $data)) {
-            return redirect()->to(base_url('dashboard'))->with('pesan', 'Data Berhasil Diupdate');
+            return redirect()->to(base_url('dashboard/kontak'))->with('pesan', 'Data Berhasil Diupdate');
         }
 
         return redirect()->back()->with('pesan', 'Gagal memperbarui data.');
@@ -51,7 +51,7 @@ class DashboardController extends BaseController
 
     public function tambah()
     {
-        return view('Dashboard/tambah');
+        return view('Dashboard/tambahKontak');
     }
 
     public function tambahFunction()
@@ -81,7 +81,7 @@ class DashboardController extends BaseController
         $model->insert($data);
 
         // Mengarahkan pengguna kembali ke halaman dashboard setelah berhasil menambahkan data
-        return redirect()->to(base_url('dashboard'))->with('pesan', 'Data Pengguna Berhasil Ditambahkan');
+        return redirect()->to(base_url('dashboard/kontak'))->with('pesan', 'Data Pengguna Berhasil Ditambahkan');
     }
 
 
@@ -89,7 +89,7 @@ class DashboardController extends BaseController
         $model = new KontakModel();
         $model->delete($id);
         
-        return redirect()->to(base_url('dashboard'))->with('pesan','Data Berhasil Dihapus');
+        return redirect()->to(base_url('dashboard/kontak'))->with('pesan','Data Berhasil Dihapus');
     }
 
 

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="/tempatCSS/customCSS/edit.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"  rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -31,34 +32,25 @@
         <div class="flex items-center">
             <div class="flex items-center ms-3">
                 <div>
-                <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                    <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
-                </button>
+                    <button type="button" id="logout-button" class="text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="w-8 h-8 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png" alt="user photo">
+                    </button>
                 </div>
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
-                <div class="px-4 py-3" role="none">
-                    <p class="text-sm text-gray-900 dark:text-white" role="none">
-                    Neil Sims
-                    </p>
-                    <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                    neil.sims@flowbite.com
-                    </p>
-                </div>
-                <ul class="py-1" role="none">
-                    <li>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
-                    </li>
-                    <li>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
-                    </li>
-                    <li>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
-                    </li>
-                    <li>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
-                    </li>
-                </ul>
+                    <div class="px-4 py-3" role="none">
+                        <p class="text-sm text-gray-900 dark:text-white" role="none">
+                            <?= session('nama_lengkap') ?>
+                        </p>
+                        <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                            @<?= session('username') ?>
+                        </p>
+                    </div>
+                    <ul class="py-1" role="none">
+                        <li>
+                            <a href="<?= base_url('/logout') ?>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             </div>
@@ -87,7 +79,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= base_url('/dashboard') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="<?= base_url('/dashboard/kontak') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
                 </svg>
@@ -127,43 +119,34 @@
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <div class="container">
-            <form id="myForm" method="post" action="<?= base_url('dashboard/update/' . $data['id']) ?>">
+            <form method="post" action="<?= base_url('dashboard/kontak/tambah') ?>">
                 <div class="mb-3">
-                    <label for="disableInput_id" class="form-label">ID</label>
-                    <input type="text" class="form-control" id="disableInput_id" name="id" value="<?= $data['id'] ?>" disabled>
+                    <label for="nama" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="nama" name="nama">
                 </div>
                 <div class="mb-3">
-                    <label for="disableInput_nama" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="disableInput_nama" name="nama" value="<?= $data['nama'] ?>" required>
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
                 </div>
                 <div class="mb-3">
-                    <label for="disableInput_email" class="form-label">Alamat Email</label>
-                    <input type="email" class="form-control" id="disableInput_email" name="email" value="<?= $data['email'] ?>" required>
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" class="form-control" id="subject" name="subject">
                 </div>
                 <div class="mb-3">
-                    <label for="disableInput_subject" class="form-label">Subject</label>
-                    <input type="text" class="form-control" id="disableInput_subject" name="subject" value="<?= $data['subject'] ?>" required>
-                </div>
-                <div class="mb-3">
-                    <label for="disableInput_pesan" class="form-label">Pesan</label>
-                    <input type="text" class="form-control" id="disableInput_pesan" name="pesan" value="<?= $data['pesan'] ?>" required>
+                    <label for="pesan" class="form-label">Pesan</label>
+                    <input type="text" class="form-control" id="pesan" name="pesan">
                 </div>
                 <div class="d-flex mt-4">
                     <button type="submit" name="submitEdit" class="btn btn-success mr-3 bg-green-500 hover:bg-green-700 border-none " onclick="return validateForm()">Submit</button>
-                    <a href="<?= base_url('dashboard') ?>" class="btn btn-primary">Kembali</a>
+                    <a href="<?= base_url('dashboard/kontak') ?>" class="btn btn-primary ms-3">Kembali</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-
-
-
-
-
-    <script src="TempatJS/bootstrap/bootstrap.bundle.min.js"></script>
-    <!-- <script src="TempatJS/customJs/script.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
     <script src="custom-js.js"></script>
 </body>
 

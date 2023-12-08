@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/tempatCSS/bootstrap/bootstrap.rtl.min.css">
-    <link rel="stylesheet" href="/custom-css.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="/tempatCSS/customCSS/edit.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"  rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
-<body>
-    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+<body style="font-family:Poppins,sans-serif;">
+
+<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
         <div class="flex items-center justify-start rtl:justify-end">
@@ -31,42 +29,33 @@
             </a>
         </div>
         <div class="flex items-center">
-            <div class="flex items-center ms-3">
+            <div class="flex items-center ms-3">    
                 <div>
-                <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                    <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
-                </button>
+                    <button type="button" id="logout-button" class="text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="w-8 h-8 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png" alt="user photo">
+                    </button>
                 </div>
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
-                <div class="px-4 py-3" role="none">
-                    <p class="text-sm text-gray-900 dark:text-white" role="none">
-                    Neil Sims
-                    </p>
-                    <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                    neil.sims@flowbite.com
-                    </p>
-                </div>
-                <ul class="py-1" role="none">
-                    <li>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
-                    </li>
-                    <li>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
-                    </li>
-                    <li>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
-                    </li>
-                    <li>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
-                    </li>
-                </ul>
+                    <div class="px-4 py-3" role="none">
+                        <p class="text-sm text-gray-900 dark:text-white" role="none">
+                            <?= session('nama_lengkap') ?>
+                        </p>
+                        <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                            @<?= session('username') ?>
+                        </p>
+                    </div>
+                    <ul class="py-1" role="none">
+                        <li>
+                            <a href="<?= base_url('/logout') ?>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             </div>
         </div>
     </div>
-    </nav>
+</nav>
 
 <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -89,7 +78,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= base_url('/dashboard') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="<?= base_url('/dashboard/kontak') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
                 </svg>
@@ -126,56 +115,45 @@
         </ul>
     </div>
 </aside>
-
-
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <div class="container">
-            <h1 class="text-4xl text-blue-600 font-bold">Daftar Umpan Balik</h1>
-            <a href="<?= base_url('dashboard/tambah') ?>" class="btn btn-success my-4"><i class="fa-solid fa-plus"></i> Tambah</a>
-            <?php if(session()->getFlashdata('pesan')): ?>
-                <div class="alert alert-success" role="alert">
-                    <?= session()->getFlashdata('pesan') ?>
+            <form id="myForm" method="post" action="<?= base_url('dashboard/kontak/update/' . $data['id']) ?>">
+                <div class="mb-3">
+                    <label for="disableInput_id" class="form-label">ID</label>
+                    <input type="text" class="form-control" id="disableInput_id" name="id" value="<?= $data['id'] ?>" disabled>
                 </div>
-            <?php endif; ?>
-            <table class="border-collapse border border-slate-500 mt-4 w-full">
-                <thead>
-                    <tr>
-                        <th class="border border-slate-600 text-center">ID</th>
-                        <th class="border border-slate-600 text-center">Username</th>
-                        <th class="border border-slate-600 text-center">Email</th>
-                        <th class="border border-slate-600 text-center">Subject</th>
-                        <th class="border border-slate-600 text-center">Pesan</th>
-                        <th class="border border-slate-600 text-center">Edit / Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        $no = 1;
-                        foreach($kontak as $jamal):
-                    ?>
-                    <tr>
-                        <td class="border border-slate-700 p-2"><?= $no ?></td>
-                        <td class="border border-slate-700 p-2"><?= $jamal['nama']?></td>
-                        <td class="border border-slate-700 p-2"><?= $jamal['email']?></td>
-                        <td class="border border-slate-700 p-2"><?= $jamal['subject'] ?></td>
-                        <td class="border border-slate-700 p-2"><?= $jamal['pesan'] ?></td>
-                        <td class="border border-slate-700 p-2 text-center">
-                            <a class="btn btn-success mb-2" href="<?= base_url('dashboard/edit/'.$jamal['id']) ?>"><i class="fa-solid fa-pencil"></i> Edit</a>
-                            <a class="btn btn-danger" href="<?= base_url('dashboard/delete/'.$jamal['id']) ?>"><i class="fa-solid fa-trash"></i> Hapus</a>
-                        </td>
-                    </tr>
-                    <?php $no++; endforeach; ?>
-                </tbody>
-            </table>
+                <div class="mb-3">
+                    <label for="disableInput_nama" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="disableInput_nama" name="nama" value="<?= $data['nama'] ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="disableInput_email" class="form-label">Alamat Email</label>
+                    <input type="email" class="form-control" id="disableInput_email" name="email" value="<?= $data['email'] ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="disableInput_subject" class="form-label">Subject</label>
+                    <input type="text" class="form-control" id="disableInput_subject" name="subject" value="<?= $data['subject'] ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="disableInput_pesan" class="form-label">Pesan</label>
+                    <input type="text" class="form-control" id="disableInput_pesan" name="pesan" value="<?= $data['pesan'] ?>" required>
+                </div>
+                <div class="d-flex mt-4">
+                    <button type="submit" name="submitEdit" class="btn btn-success mr-3 bg-green-500 hover:bg-green-700 border-none " onclick="return validateForm()">Submit</button>
+                    <a href="<?= base_url('dashboard/kontak') ?>" class="btn btn-primary">Kembali</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
-    <script src="/tempatJS/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="/custom-js.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script src="TempatJS/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- <script src="TempatJS/customJs/script.js"></script> -->
+    <script src="custom-js.js"></script>
 </body>
 
 </html>
