@@ -29,6 +29,7 @@
                         <input type="password" id="password" name="password" placeholder="Password" required>
                     </div>
                     <div class="submit"><button type="submit" name="masuk">Masuk</button></div>
+                    <div class="keluar"><button name="keluar" onclick="location.href='/beranda'">Kembali ke halaman</button></div>
                 </form>
             </div>
         </div>

@@ -40,57 +40,74 @@
         <!-- <div class="move-kontak"> -->
             <div class="address-kontak">
                 <div class="mail">
-                    <div class="isian icons">
-                        <strong>Email</strong>
-                        <p>u6I5h@example.com</p>
-                    </div>
-                    <div class="icons">
-                        <i class="bi bi-envelope-at"></i>
-                    </div>
+                    <a href="#" class="isian">
+                        <div class="hehe">
+                            <strong>Email</strong>
+                            <p>u6I5h@example.com</p>
+                        </div>
+                        <div>
+                            <i class="bi bi-envelope-at"></i>
+                        </div>
+                    </a>
                 </div>
                 <div class="mail">
-                    <div class="isian icons">
-                        <strong>Email</strong>
-                        <p>u6I5h@example.com</p>
-                    </div>
-                    <div class="icons">
-                        <i class="bi bi-envelope-at"></i>
-                    </div>
+                    <a href="#" class="isian">
+                        <div class="hehe">
+                            <strong>Facebook</strong>
+                            <p>u6I5h@example.com</p>
+                        </div>
+                        <div>
+                            <i class="bi bi-facebook"></i>
+                        </div>
+                    </a>
                 </div>
                 <div class="mail">
-                    <div class="isian icons">
-                        <strong>Email</strong>
-                        <p>u6I5h@example.com</p>
-                    </div>
-                    <div class="icons">
-                        <i class="bi bi-envelope-at"></i>
-                    </div>
+                    <a href="#" class="isian">
+                        <div class="hehe">
+                            <strong>Twitter</strong>
+                            <p>u6I5h@example.com</p>
+                        </div>
+                        <div>
+                            <i class="bi bi-twitter-x"></i>
+                        </div>
+                    </a>
                 </div>
                 <div class="mail">
-                    <div class="isian icons">
-                        <strong>Email</strong>
-                        <p>u6I5h@example.com</p>
-                    </div>
-                    <div class="icons">
-                        <i class="bi bi-envelope-at"></i>
-                    </div>
+                    <a href="#" class="isian">
+                        <div class="hehe">
+                            <strong>Instagram</strong>
+                            <p>u6I5h@example.com</p>
+                        </div>
+                        <div>
+                            <i class="bi bi-instagram"></i>
+                        </div>
+                    </a>
                 </div>
                 <div class="mail">
-                    <div class="isian icons">
-                        <strong>Email</strong>
-                        <p>u6I5h@example.com</p>
-                    </div>
-                    <div class="icons">
-                        <i class="bi bi-envelope-at"></i>
-                    </div>
+                    <a href="#" class="isian">
+                        <div class="hehe">
+                            <strong>Linkedin</strong>
+                            <p>u6I5h@example.com</p>
+                        </div>
+                        <div>
+                            <i class="bi bi-linkedin"></i>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="kotak-kontak">
-                <input type="text" placeholder="Nama">
-                <input type="email" placeholder="Alamat Email">
-                <input type="text" placeholder="Subject">
-                <textarea name="" id="" placeholder="Pesan"></textarea>
-                <button type="submit">Kirim</button>
+                <form method="post" action="<?= base_url('kontak/tambah') ?>">
+                    <input type="text" placeholder="Nama" id="nama" name="nama">
+                    <input type="email" placeholder="Alamat Email" id="email" name="email">
+                    <input type="text" placeholder="Subject" id="subject" name="subject">
+                    <textarea placeholder="Pesan" id="pesan" name="pesan" ></textarea>
+                    <button type="submit">Kirim</button>
+                    <?php if(session()->getFlashdata('pesan')): ?>
+                        <div class="alert alert-success mt-4" role="alert">
+                            <?= session()->getFlashdata('pesan') ?>
+                        </div>
+                    <?php endif; ?>
+                </form>
             </div>
         <!-- </div> -->
     </div>

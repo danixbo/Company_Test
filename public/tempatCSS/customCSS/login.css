@@ -136,6 +136,17 @@
     color: white;
 }
 
+.keluar button {
+    cursor: pointer;
+    width: 50%;
+    margin-top: 20px;
+    height: 50px;
+    border: none;
+    border-radius: 9px;
+    background: #AC0940;
+    color: white;
+}
+
 
 .sisi-kanan img {
     background-position: center;

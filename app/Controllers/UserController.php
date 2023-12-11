@@ -31,7 +31,13 @@ class UserController extends BaseController
         $password = $this->request->getPost('password');
         $nama = $this->request->getPost('nama');
         $level = $this->request->getPost('level');
+        $gambar = $this->request->getFile('gambar');
 
+        // Validasi ekstensi gambar
+        $allowedExtensions = ['png', 'jpg', 'jpeg'];
+        if (!in_array($gambar->getExtension(), $allowedExtensions)) {
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data pengguna: Ekstensi gambar tidak diperbolehkan.');
+        }
         if (!is_string($password)) {
             // Handle the case when $password is not a string
             // You can set a default value or show an error message
@@ -49,6 +55,7 @@ class UserController extends BaseController
             'password' => $password,
             'nama' => $nama,
             'level' => $level,
+            'gambar' => $gambar
         ];
 
         try {
@@ -84,6 +91,7 @@ class UserController extends BaseController
             'password' => 'required|min_length[8]',
             'nama' => 'required',
             'level' => 'required',
+            'gambar' => 'required|uploaded[gambar]|mime_in[gambar,image/png,image/jpeg]',
         ];
 
         $validationMessages = [
@@ -97,6 +105,11 @@ class UserController extends BaseController
             ],
             'nama' => 'Harap isi nama.',
             'level' => 'Harap pilih level.',
+            'gambar' => [
+                'required' => 'Harap pilih Gambar.',
+                'uploaded' => 'Gagal mengunggah gambar.',
+                'mime_in' => 'Ekstensi file harus .png, .jpg, atau .jpeg.',
+            ],
         ];
 
         if (!$this->validate($validationRules, $validationMessages)) {
@@ -115,6 +128,7 @@ class UserController extends BaseController
             'password' => $this->request->getPost('password'),
             'nama' => $this->request->getPost('nama'),
             'level' => $this->request->getPost('level'),
+            'gambar' => $this->request->getPost('gambar'),
         ];
 
         // Update data di database

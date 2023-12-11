@@ -8,8 +8,10 @@ use CodeIgniter\Router\RouteCollection;
 
 // <------------------------------ HALAMAN ------------------------------>
 
-$routes->get('/', 'HalamanController::index', ['filter' => 'login']);
+$routes->get('/', 'HalamanController::login', ['filter' => 'login']);
+$routes->get('/beranda', 'HalamanController::index');
 $routes->get('/kontak', 'HalamanController::kontak');
+$routes->post('/kontak/tambah', 'HalamanController::tambahFunction');
 $routes->get('/register', 'HalamanController::register');
 
 
@@ -32,6 +34,11 @@ $routes->post('/dashboard/user/tambah', 'UserController::tambahFunction');
 $routes->get('/dashboard/user/delete/(:num)', 'UserController::delete/$1');
 $routes->get('/dashboard/user/edit/(:num)', 'UserController::edit/$1');
 $routes->post('/dashboard/user/update/(:num)', 'UserController::update/$1');
+
+// <------------------------------ PROFILE ------------------------------>
+
+$routes->get('/dashboard/profile', 'ProfileController::index');
+
 
 // <------------------------------ LOGIN ------------------------------>
 
