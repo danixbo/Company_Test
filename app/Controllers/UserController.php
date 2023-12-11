@@ -33,25 +33,6 @@ class UserController extends BaseController
         $password = $this->request->getPost('password');
         $nama = $this->request->getPost('nama');
         $level = $this->request->getPost('level');
-            // $gambar = $this->request->getFile('gambar');
-
-            // if ($gambar !== null && $gambar->isValid() && !empty($gambar->getName())) {
-            //     // Validasi ekstensi gambar
-            //     $allowedExtensions = ['png', 'jpg', 'jpeg'];
-            //     if (!in_array($gambar->getExtension(), $allowedExtensions)) {
-            //         return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data pengguna: Ekstensi gambar tidak diperbolehkan.');
-            //     }
-
-            //     // Lakukan penyimpanan file gambar ke dalam folder atau penyimpanan yang ditentukan
-            //     $gambar->move('path/to/destination/folder', $gambar->getName());
-
-            //     // Set nilai kolom 'gambar' dengan nama file yang diunggah
-            //     $data['gambar'] = $gambar->getName();
-            // } else {
-            //     // Tidak ada file gambar yang diunggah atau tidak valid
-            //     // Lakukan penanganan kesalahan atau berikan pesan ke pengguna
-            //     return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data pengguna: File gambar tidak valid.');
-            // }
 
         // Lanjutkan dengan penyimpanan data ke dalam database
         // $model->insert($data);
@@ -73,7 +54,6 @@ class UserController extends BaseController
             'password' => $password,
             'nama' => $nama,
             'level' => $level,
-            // 'gambar' => $gambar
         ];
 
         try {
@@ -109,7 +89,6 @@ class UserController extends BaseController
             'password' => 'required|min_length[8]',
             'nama' => 'required',
             'level' => 'required',
-            // 'gambar' => 'required|uploaded[gambar]|mime_in[gambar,image/png,image/jpeg]',
         ];
 
         $validationMessages = [
@@ -123,11 +102,6 @@ class UserController extends BaseController
             ],
             'nama' => 'Harap isi nama.',
             'level' => 'Harap pilih level.',
-            // 'gambar' => [
-            //     'required' => 'Harap pilih Gambar.',
-            //     'uploaded' => 'Gagal mengunggah gambar.',
-            //     'mime_in' => 'Ekstensi file harus .png, .jpg, atau .jpeg.',
-            // ],
         ];
 
         if (!$this->validate($validationRules, $validationMessages)) {
@@ -146,7 +120,6 @@ class UserController extends BaseController
             'password' => $this->request->getPost('password'),
             'nama' => $this->request->getPost('nama'),
             'level' => $this->request->getPost('level'),
-            // 'gambar' => $this->request->getPost('gambar'),
         ];
 
         // Update data di database

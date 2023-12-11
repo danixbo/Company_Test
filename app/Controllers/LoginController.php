@@ -32,7 +32,6 @@ class LoginController extends Controller
             session()->set('user_id', $user['id']);
             session()->set('nama_lengkap', $user['nama']);
             session()->set('username', $user['username']);
-            session()->set('profile', $user['gambar']);
 
             return redirect()->to('/dashboard/kontak');
         } else {

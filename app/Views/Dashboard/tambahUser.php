@@ -117,25 +117,25 @@
         <div class="container">
             <form method="post" action="<?= base_url('dashboard/user/tambah') ?>">
                 <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control rounded-lg" id="username" name="username">
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" id="username" name="username" required>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control rounded-lg" id="password" name="password">
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                    <input type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="password" name="password" placeholder="•••••••••" required>
                 </div>
                 <div class="mb-3">
-                    <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control rounded-lg" id="nama" name="nama">
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John Cena" id="nama" name="nama" required>
                 </div>
                 <div class="mb-3">
-                    <label for="level" class="form-label">Level</label>
-                    <select class="form-select rounded-lg" name="level" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="Member">Member</option>
-                        <option value="Writer">Writter</option>
-                        <option value="Admin">Admin</option>
-                    </select>
+                <label for="level" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                <select name="level" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Pilih Role Anda</option>
+                    <option value="Member">Member</option>
+                    <option value="Writer">Writter</option>
+                    <option value="Admin">Admin</option>
+                </select>
                     <!-- <input type="text" class="form-control" id="level" name="level"> -->
                 </div>
                 <!-- <div class="mb-3">
