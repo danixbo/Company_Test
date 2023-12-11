@@ -34,11 +34,6 @@ class User extends Migration
                 "constraint"=> ["admin","writer","member"],
                 "default"=> "admin",
             ],
-            "gambar"=>[
-                "type"=> "varchar",
-                "constraint"=> 255,
-                "null"=> true,
-            ],
         ]);
         $this->forge->addKey("id");
         $this->forge->createTable("user");
