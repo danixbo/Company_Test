@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class BeritaModel extends Model
 {
-    protected $table            = 'beritas';
+    protected $table            = 'berita';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ["nama","gambar","deskripsi","judul"];
+    protected $allowedFields    = ['gambar', 'judul', 'deskripsi'];
 
     // Dates
     protected $useTimestamps = false;

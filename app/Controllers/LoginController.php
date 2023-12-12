@@ -33,7 +33,7 @@ class LoginController extends Controller
             session()->set('nama_lengkap', $user['nama']);
             session()->set('username', $user['username']);
 
-            return redirect()->to('/dashboard/kontak');
+            return redirect()->to(base_url('/dashboard/kontak'));
         } else {
             return redirect()->to(base_url('/login'))->withInput()->with('error', 'Login gagal. Periksa username dan password Anda.');
         }

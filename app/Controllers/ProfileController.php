@@ -8,17 +8,29 @@ class ProfileController extends BaseController
 {
     public function index()
     {
-        return view('Dashboard/profile');
-    }
+        $userModel = new UserModel();
 
-    public function dataUpdate($id)
+        // Get the logged-in user's ID from the session
+        $userId = session()->get('user_id');
+
+        // Retrieve the user's data based on the ID
+        $data = $userModel->find($userId);
+
+        return view('Dashboard/profile', ['data' => $data]);
+    }
+    public function dataUpdate()
     {
         $model = new UserModel();
 
         // Validasi input   
         $validationRules = [
-            'username' => 'required|is_unique[user.username,id,' . $id . ']',
-            'password' => 'required|min_length[8]',
+            'username' => [
+                'rules' => 'required|is_unique[user.username]',
+                'errors' => [
+                    'required' => 'Harap isi username.',
+                    'is_unique' => 'Username sudah digunakan. Pilih username lain.',
+                ],
+            ],
             'nama' => 'required',
             'level' => 'required',
         ];
@@ -28,35 +40,30 @@ class ProfileController extends BaseController
                 'required' => 'Harap isi username.',
                 'is_unique' => 'Username sudah digunakan. Pilih username lain.',
             ],
-            'password' => [
-                'required' => 'Harap isi password.',
-                'min_length' => 'Password minimal harus 8 karakter.',
-            ],
             'nama' => 'Harap isi nama.',
             'level' => 'Harap pilih level.',
         ];
 
-        if (!$this->validate($validationRules, $validationMessages)) {
+        if (!$this->validate($validationRules)) {
             return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
         }
 
-        $password = $this->request->getPost('password');
-
-        if (is_array($password) || $password === null) {
-            // Handle the error or provide a default value
-            $password = '';
-        }
-        // Hash password baru
+        // Ambil data pengguna yang telah diubah
         $data = [
             'username' => $this->request->getPost('username'),
-            'password' => $this->request->getPost('password'),
             'nama' => $this->request->getPost('nama'),
             'level' => $this->request->getPost('level'),
         ];
 
-        // Update data di database
-        if ($model->update($id, $data)) {
-            return redirect()->to(base_url('dashboard/user'))->with('pesan', 'Data Berhasil Diupdate');
+        // Perbarui data pengguna di variabel atau objek
+        $user = $model->find(session()->get('user_id'));
+        $user->username = $data['username'];
+        $user->nama = $data['nama'];
+        $user->level = $data['level'];
+
+        // Simpan perubahan ke database
+        if ($model->update(session()->get('user_id'), $user)) {
+            return redirect()->to(base_url('dashboard/profile'))->with('pesan', 'Data Berhasil Diupdate');
         } else {
             return redirect()->back()->with('pesan', 'Gagal memperbarui data.');
         }

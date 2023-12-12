@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\BeritaModel;
 use App\Models\KontakModel;
 
 class HalamanController extends BaseController
@@ -24,7 +25,10 @@ class HalamanController extends BaseController
     }
     public function index()
     {
-        return view('Halaman/beranda');
+        $beritaModel = new BeritaModel();
+        $data['berita'] = $beritaModel->findAll();
+
+        return view('Halaman/beranda', $data);
     }
     public function kontak()
     {

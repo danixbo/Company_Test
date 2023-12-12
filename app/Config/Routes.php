@@ -38,7 +38,7 @@ $routes->post('/dashboard/user/update/(:num)', 'UserController::update/$1');
 // <------------------------------ PROFILE ------------------------------>
 
 $routes->get('/dashboard/profile', 'ProfileController::index');
-$routes->post('/dashboard/profile/update/(:num)', 'ProfileController::dataUpdate/$1');
+$routes->post('/dashboard/profile/update', 'ProfileController::dataUpdate');
 
 
 // <------------------------------ LOGIN ------------------------------>
