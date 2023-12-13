@@ -15,10 +15,36 @@ class UserController extends BaseController
     public function dashboardUser()
     {
         $model = new UserModel();
-        $data['user'] = $model->findAll();
+        $keyword = $this->request->getVar('keyword');
+
+        if ($keyword) {
+            $users = $model->like('username', $keyword)
+                ->orLike('password', $keyword)
+                ->orLike('nama', $keyword)
+                ->orLike('level', $keyword)
+                ->findAll();
+
+            $data['user'] = $users;
+
+            if (!empty($users)) {
+                // User found, set success message
+                session()->setFlashdata('success', 'User successfully found.');
+            } else {
+                // User not found, set a different message if needed
+                session()->setFlashdata('info', 'No users found with the given keyword.');
+            }
+        } else {
+            $data['user'] = $model->findAll();
+        }
+
+        $data['keyword'] = $keyword; // Ensure $keyword is defined
 
         return view('Dashboard/userDash', $data);
     }
+
+
+
+
     
     public function tambahUser()
     {
@@ -29,22 +55,44 @@ class UserController extends BaseController
     {
         $model = new UserModel();
 
+        // Validasi input
+        $validationRules = [
+            'username' => 'required|is_unique[user.username]|alpha_numeric',
+            'password' => 'required|min_length[8]|alpha_numeric',
+            'nama' => 'required|alpha_numeric_space',
+            'level' => 'required',
+        ];
+
+        $validationMessages = [
+            'username' => [
+                'required' => 'Harap isi username.',
+                'is_unique' => 'Username sudah ada. Pilih username lain.',
+                'alpha_numeric' => 'Username hanya boleh berisi huruf dan angka.',
+            ],
+            'password' => [
+                'required' => 'Harap isi password.',
+                'min_length' => 'Password minimal harus 8 karakter.',
+                'alpha_numeric' => 'Password hanya boleh berisi huruf dan angka.',
+            ],
+            'nama' => [
+                'required' => 'Harap isi nama.',
+                'alpha_numeric_space' => 'Nama hanya boleh berisi huruf, angka, dan spasi.',
+            ],
+            'level' => 'Harap pilih level.',
+        ];
+
+        // Melakukan validasi
+        if (!$this->validate($validationRules, $validationMessages)) {
+            // Jika validasi gagal, kembalikan dengan pesan error
+            return redirect()->back()->withInput()->with('error', implode('<br>', $this->validator->getErrors()));
+        }
+
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
         $nama = $this->request->getPost('nama');
         $level = $this->request->getPost('level');
 
-        // Lanjutkan dengan penyimpanan data ke dalam database
-        // $model->insert($data);
-
-        if (!is_string($password)) {
-            // Handle the case when $password is not a string
-            // You can set a default value or show an error message
-            $password = ''; // or $password = 'default_password';
-        }
-
         // Pemeriksaan apakah username sudah ada
-        $model = new UserModel();
         if ($model->where('username', $username)->countAllResults() > 0) {
             return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data pengguna: Username sudah ada.');
         }
@@ -63,6 +111,8 @@ class UserController extends BaseController
             return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data pengguna: ' . $e->getMessage());
         }
     }
+
+
 
     public function delete($id) {
         $model = new UserModel();
@@ -83,11 +133,30 @@ class UserController extends BaseController
     {
         $model = new UserModel();
 
-        // Validasi input   
+        // Validasi input
         $validationRules = [
-            'username' => 'required|is_unique[user.username,id,' . $id . ']',
-            'password' => 'required|min_length[8]',
-            'nama' => 'required',
+            'username' => [
+                'rules' => 'required|is_unique[user.username,id,' . $id . ']|alpha_numeric',
+                'errors' => [
+                    'required' => 'Harap isi username.',
+                    'is_unique' => 'Username sudah digunakan. Pilih username lain.',
+                    'alpha_numeric' => 'Username hanya boleh berisi huruf dan angka.',
+                ],
+            ],
+            'password' => [
+                'rules' => 'permit_empty|min_length[8]|alpha_numeric',
+                'errors' => [
+                    'min_length' => 'Password minimal harus 8 karakter.',
+                    'alpha_numeric' => 'Password hanya boleh berisi huruf dan angka.',
+                ],
+            ],
+            'nama' => [
+                'rules' => 'required|alpha_numeric_space',
+                'errors' => [
+                    'required' => 'Harap isi nama.',
+                    'alpha_numeric_space' => 'Nama hanya boleh berisi huruf, angka, dan spasi.',
+                ],
+            ],
             'level' => 'required',
         ];
 
@@ -95,26 +164,24 @@ class UserController extends BaseController
             'username' => [
                 'required' => 'Harap isi username.',
                 'is_unique' => 'Username sudah digunakan. Pilih username lain.',
+                'alpha_numeric' => 'Username hanya boleh berisi huruf dan angka.',
             ],
             'password' => [
-                'required' => 'Harap isi password.',
                 'min_length' => 'Password minimal harus 8 karakter.',
+                'alpha_numeric' => 'Password hanya boleh berisi huruf dan angka.',
             ],
-            'nama' => 'Harap isi nama.',
+            'nama' => [
+                'required' => 'Harap isi nama.',
+                'alpha_numeric_space' => 'Nama hanya boleh berisi huruf, angka, dan spasi.',
+            ],
             'level' => 'Harap pilih level.',
         ];
 
         if (!$this->validate($validationRules, $validationMessages)) {
-            return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
+            session()->setFlashdata('error', $this->validator->getErrors());
+            return redirect()->back()->withInput();
         }
 
-        $password = $this->request->getPost('password');
-
-        if (is_array($password) || $password === null) {
-            // Handle the error or provide a default value
-            $password = '';
-        }
-        // Hash password baru
         $data = [
             'username' => $this->request->getPost('username'),
             'password' => $this->request->getPost('password'),
@@ -122,18 +189,12 @@ class UserController extends BaseController
             'level' => $this->request->getPost('level'),
         ];
 
-        // Update data di database
         if ($model->update($id, $data)) {
             return redirect()->to(base_url('dashboard/user'))->with('pesan', 'Data Berhasil Diupdate');
-        } else {
-            return redirect()->back()->with('pesan', 'Gagal memperbarui data.');
         }
+
+        return redirect()->back()->with('pesan', 'Gagal memperbarui data.');
     }
-
-
-
-
-
 
 }
 

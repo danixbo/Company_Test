@@ -115,17 +115,23 @@
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <div class="container">
             <form id="myForm" method="post" action="<?= base_url('dashboard/user/update/' . $data['id']) ?>">
-                <div class="mb-3">
-                    <label for="disableInput_id" class="form-label">ID</label>
-                    <input type="text" class="form-control rounded-lg" id="disableInput_id" name="id" value="<?= $data['id'] ?>" disabled>
-                </div>
+                <!-- Hidden input untuk menyimpan ID -->
+                <?php if (session()->getFlashdata('error')) : ?>
+                    <div class="alert alert-danger">
+                        <?= implode('<br>', session()->getFlashdata('error')) ?>
+                    </div>
+                <?php endif; ?>
+
+                <input type="hidden" name="id" value="<?= $data['id'] ?>">
+
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control rounded-lg" id="username" name="username" value="<?= $data['username'] ?>" required>
+                    <input type="text" class="form-control rounded-lg" id="username" name="username" value="<?= $data['username'] ?>">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control rounded-lg" id="password" name="password" value="<?= $data['password'] ?>" required>
+                    <input type="password" class="form-control rounded-lg" id="password" name="password" value="">
+                    <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Password Minimal 8 Karakter.</p>
                 </div>
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
@@ -135,15 +141,16 @@
                     <label for="level" class="form-label">Level</label>
                     <select class="form-control rounded-lg" id="level" name="level" required>
                         <option value="Member" <?= ($data['level'] == 'member') ? 'selected' : '' ?>>Member</option>
-                        <option value="Writer" <?= ($data['level'] == 'writter') ? 'selected' : '' ?>>Writter</option>
+                        <option value="Writer" <?= ($data['level'] == 'writer') ? 'selected' : '' ?>>Writer</option>
                         <option value="Admin" <?= ($data['level'] == 'admin') ? 'selected' : '' ?>>Admin</option>
                     </select>
                 </div>
                 <div class="d-flex mt-4">
-                    <button type="submit" name="submitEdit" class="btn btn-success mr-3 bg-green-500 hover:bg-green-700 border-none " onclick="return validateForm()">Submit</button>
+                    <button type="submit" name="submitEdit" class="btn btn-success mr-3 bg-green-500 hover:bg-green-700 border-none">Submit</button>
                     <a href="<?= base_url('dashboard/user') ?>" class="btn btn-primary">Kembali</a>
                 </div>
             </form>
+
         </div>
     </div>
 </div>

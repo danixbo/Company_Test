@@ -116,6 +116,19 @@
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <div class="container">
             <form method="post" action="<?= base_url('dashboard/user/tambah') ?>">
+            <?php if (session()->getFlashdata('error')) : ?>
+                <div class="alert alert-danger">
+                    <?php
+                    $errorData = session()->getFlashdata('error');
+
+                    // Check if it's an array, if not, convert it to an array
+                    $errorArray = is_array($errorData) ? $errorData : [$errorData];
+
+                    echo implode('<br>', $errorArray);
+                    ?>
+                </div>
+            <?php endif; ?>
+
                 <div class="mb-3">
                     <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                     <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" id="username" name="username" required>
@@ -123,6 +136,7 @@
                 <div class="mb-3">
                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                     <input type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="password" name="password" placeholder="•••••••••" required>
+                    <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Password Minimal 8 Karakter.</p>
                 </div>
                 <div class="mb-3">
                     <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>

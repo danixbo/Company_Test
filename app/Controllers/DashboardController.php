@@ -18,7 +18,29 @@ class DashboardController extends BaseController
     public function dashboard()
     {
         $model = new KontakModel();
-        $data['kontak'] = $model->findAll();
+        $keyword = $this->request->getVar('keyword');
+
+        if ($keyword) {
+            $users = $model->like('nama', $keyword)
+                ->orLike('email', $keyword)
+                ->orLike('subject', $keyword)
+                ->orLike('pesan', $keyword)
+                ->findAll();
+
+            $data['kontak'] = $users;
+
+            if (!empty($users)) {
+                // User found, set success message
+                session()->setFlashdata('success', 'User successfully found.');
+            } else {
+                // User not found, set a different message if needed
+                session()->setFlashdata('info', 'No users found with the given keyword.');
+            }
+        } else {
+            $data['kontak'] = $model->findAll();
+        }
+
+        $data['keyword'] = $keyword; // Ensure $keyword is defined
 
         return view('Dashboard/kontakDash', $data);
     }

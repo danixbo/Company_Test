@@ -18,6 +18,7 @@ $routes->get('/register', 'HalamanController::register');
 // <------------------------------ DASHBOARD KONTAK ------------------------------>
 
 $routes->get('/dashboard/kontak', 'DashboardController::dashboard');
+$routes->post('/dashboard/kontak', 'DashboardController::dashboard');
 $routes->get('/index.php/dashboard/kontak', 'DashboardController::index');
 $routes->get('/login/kontak/dashboard', 'DashboardController::loginDasboard');
 $routes->get('/dashboard/kontak/edit/(:num)', 'DashboardController::edit/$1');
@@ -29,11 +30,13 @@ $routes->post('/dashboard/kontak/tambah', 'DashboardController::tambahFunction')
 // <------------------------------ DASHBOARD USER ------------------------------>
 
 $routes->get('/dashboard/user', 'UserController::dashboardUser');
+$routes->post('/dashboard/user', 'UserController::dashboardUser');
 $routes->get('/dashboard/user/tambah', 'UserController::tambahUser');
 $routes->post('/dashboard/user/tambah', 'UserController::tambahFunction');
 $routes->get('/dashboard/user/delete/(:num)', 'UserController::delete/$1');
 $routes->get('/dashboard/user/edit/(:num)', 'UserController::edit/$1');
 $routes->post('/dashboard/user/update/(:num)', 'UserController::update/$1');
+
 
 // <------------------------------ PROFILE ------------------------------>
 

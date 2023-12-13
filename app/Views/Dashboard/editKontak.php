@@ -111,6 +111,11 @@
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <div class="container">
             <form id="myForm" method="post" action="<?= base_url('dashboard/kontak/update/' . $data['id']) ?>">
+                <?php if (session()->getFlashdata('error')) : ?>
+                    <div class="alert alert-danger">
+                        <?= session()->getFlashdata('error') ?>
+                    </div>
+                <?php endif; ?>
                 <div class="mb-3">
                     <label for="disableInput_id" class="form-label">ID</label>
                     <input type="text" class="form-control" id="disableInput_id" name="id" value="<?= $data['id'] ?>" disabled>
