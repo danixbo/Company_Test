@@ -28,8 +28,8 @@
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" placeholder="Password" required>
                     </div>
-                    <div class="submit"><button type="submit" name="masuk">Masuk</button></div>
-                    <div class="keluar"><button name="keluar" onclick="location.href='/beranda'">Kembali ke halaman</button></div>
+                    <div class="submit"><button onclick="location.href='<?= base_url('/beranda') ?>'" style="background: #AC0940;">Beranda</button><button type="submit" name="masuk">Masuk</button></div>
+                    <div class="register"><a href="<?= base_url('register') ?>"><p style="margin-left:auto;">Belum mempunyai akun?</p> <p style="color: #48D1CC; margin-right:auto;">Register</p></a></div>
                 </form>
             </div>
         </div>

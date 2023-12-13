@@ -37,8 +37,6 @@ class LoginController extends Controller
         } else {
             return redirect()->to(base_url('/login'))->withInput()->with('error', 'Login gagal. Periksa username dan password Anda.');
         }
-
-
     }
 
 }

@@ -13,6 +13,7 @@ $routes->get('/beranda', 'HalamanController::index');
 $routes->get('/kontak', 'HalamanController::kontak');
 $routes->post('/kontak/tambah', 'HalamanController::tambahFunction');
 $routes->get('/register', 'HalamanController::register');
+$routes->post('/register/prosesRegister', 'HalamanController::tambahUser');
 
 
 // <------------------------------ DASHBOARD KONTAK ------------------------------>
@@ -51,7 +52,6 @@ $routes->post('/dashboard/berita/update/(:num)', 'BeritaController::update/$1');
 
 $routes->get('/dashboard/profile', 'ProfileController::index');
 $routes->post('/dashboard/profile/update', 'ProfileController::dataUpdate');
-
 
 // <------------------------------ LOGIN ------------------------------>
 

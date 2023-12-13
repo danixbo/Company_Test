@@ -136,15 +136,23 @@
     color: white;
 }
 
-.keluar button {
-    cursor: pointer;
-    width: 50%;
+.register {
+    margin-top: 50px;
+    font-size: smaller;
+}
+
+.register a {
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none !important;
+    gap: 5px;
+    display: flex;
+}
+
+.submit {
+    display: flex;
+    gap: 20px;
     margin-top: 20px;
-    height: 50px;
-    border: none;
-    border-radius: 9px;
-    background: #AC0940;
-    color: white;
 }
 
 

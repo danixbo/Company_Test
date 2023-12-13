@@ -18,20 +18,34 @@ class ProfileController extends BaseController
 
         return view('Dashboard/profile', ['data' => $data]);
     }
-    public function dataUpdate()
-    {
+public function dataUpdate()
+{
         $model = new UserModel();
 
-        // Validasi input   
+        // Validasi input
         $validationRules = [
             'username' => [
-                'rules' => 'required|is_unique[user.username]',
+                'rules' => 'required|is_unique[user.username,id,' . session()->get('user_id') . ']|alpha_numeric',
                 'errors' => [
                     'required' => 'Harap isi username.',
                     'is_unique' => 'Username sudah digunakan. Pilih username lain.',
+                    'alpha_numeric' => 'Username hanya boleh berisi huruf dan angka.',
                 ],
             ],
-            'nama' => 'required',
+            'password' => [
+                'rules' => 'permit_empty|min_length[8]|alpha_numeric',
+                'errors' => [
+                    'min_length' => 'Password minimal harus 8 karakter.',
+                    'alpha_numeric' => 'Password hanya boleh berisi huruf dan angka.',
+                ],
+            ],
+            'nama' => [
+                'rules' => 'required|alpha_numeric_space',
+                'errors' => [
+                    'required' => 'Harap isi nama.',
+                    'alpha_numeric_space' => 'Nama hanya boleh berisi huruf, angka, dan spasi.',
+                ],
+            ],
             'level' => 'required',
         ];
 
@@ -39,35 +53,42 @@ class ProfileController extends BaseController
             'username' => [
                 'required' => 'Harap isi username.',
                 'is_unique' => 'Username sudah digunakan. Pilih username lain.',
+                'alpha_numeric' => 'Username hanya boleh berisi huruf dan angka.',
             ],
-            'nama' => 'Harap isi nama.',
+            'password' => [
+                'min_length' => 'Password minimal harus 8 karakter.',
+                'alpha_numeric' => 'Password hanya boleh berisi huruf dan angka.',
+            ],
+            'nama' => [
+                'required' => 'Harap isi nama.',
+                'alpha_numeric_space' => 'Nama hanya boleh berisi huruf, angka, dan spasi.',
+            ],
             'level' => 'Harap pilih level.',
         ];
 
-        if (!$this->validate($validationRules)) {
-            return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
+        if (!$this->validate($validationRules, $validationMessages)) {
+            session()->setFlashdata('error', $this->validator->getErrors());
+            return redirect()->back()->withInput();
         }
 
-        // Ambil data pengguna yang telah diubah
         $data = [
             'username' => $this->request->getPost('username'),
+            'password' => $this->request->getPost('password'),
             'nama' => $this->request->getPost('nama'),
             'level' => $this->request->getPost('level'),
         ];
 
-        // Perbarui data pengguna di variabel atau objek
-        $user = $model->find(session()->get('user_id'));
-        $user->username = $data['username'];
-        $user->nama = $data['nama'];
-        $user->level = $data['level'];
+        if ($model->update(session()->get('user_id'), $data)) {
+            // Clear the user's session data after 5 seconds
+            sleep(5);
+            session()->destroy();
 
-        // Simpan perubahan ke database
-        if ($model->update(session()->get('user_id'), $user)) {
-            return redirect()->to(base_url('dashboard/profile'))->with('pesan', 'Data Berhasil Diupdate');
-        } else {
-            return redirect()->back()->with('pesan', 'Gagal memperbarui data.');
+            return redirect()->to(base_url('dashboard/profile'))->with('pesan', 'Data Berhasil Diupdate, Silahkan Login Kembali Untuk Melihat Perubahan.');
         }
-    }
+
+        return redirect()->back()->with('pesan', 'Gagal memperbarui data.');
+}
+
 }
 
 ?>
