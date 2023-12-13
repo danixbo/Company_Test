@@ -166,7 +166,9 @@
                     ?>
                     <tr>
                         <td class="border border-slate-700 p-2"><?= $no ?></td>
-                        <td class="border border-slate-700 p-2"><?= $asep['gambar']?></td>
+                        <td class="border border-slate-700 p-2 flex justify-center">
+                            <img src="<?= $asep['gambar'] ?>" alt="<?= $asep['judul'] ?>" width="100">
+                        </td>
                         <td class="border border-slate-700 p-2"><?= $asep['judul']?></td>
                         <td class="border border-slate-700 p-2"><?= $asep['deskripsi'] ?></td>
                         <td class="border border-slate-700 p-2 text-center">

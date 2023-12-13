@@ -28,12 +28,21 @@ class BeritaController extends BaseController
                 session()->setFlashdata('info', 'No users found with the given keyword.');
             }
         } else {
-            $data['berita'] = $model->findAll();
+            $berita = $model->findAll();
+            // Mengubah teks menjadi URL gambar
+            foreach ($berita as &$item) {
+                $item['gambar'] = base_url('uploads/') . $item['gambar'];
+            }
+            $data['berita'] = $berita;
         }
 
         $data['keyword'] = $keyword; // Ensure $keyword is defined
 
         return view('Dashboard/beritaDash', $data);
+    }
+    public function tambahBerita()
+    {
+        return view('Dashboard/tambahBerita');
     }
 
     public function tambahFunction()
@@ -42,28 +51,25 @@ class BeritaController extends BaseController
 
         // Validasi input
         $validationRules = [
-            'username' => 'required|is_unique[user.username]|alpha_numeric',
-            'password' => 'required|min_length[8]|alpha_numeric',
-            'nama' => 'required|alpha_numeric_space',
-            'level' => 'required',
+            'gambar' => 'uploaded[gambar]|max_size[gambar,1024]|is_image[gambar]|ext_in[gambar,jpg,jpeg,png]',
+            'judul' => 'required|alpha_numeric',
+            'deskripsi' => 'required',
         ];
 
         $validationMessages = [
-            'username' => [
-                'required' => 'Harap isi username.',
-                'is_unique' => 'Username sudah ada. Pilih username lain.',
-                'alpha_numeric' => 'Username hanya boleh berisi huruf dan angka.',
+            'gambar' => [
+                'uploaded' => 'Harap pilih gambar untuk diunggah.',
+                'max_size' => 'Ukuran gambar tidak boleh melebihi 1 MB.',
+                'is_image' => 'File yang diunggah harus berupa gambar.',
+                'ext_in' => 'Format gambar yang diizinkan adalah jpg, jpeg, atau png.',
             ],
-            'password' => [
-                'required' => 'Harap isi password.',
-                'min_length' => 'Password minimal harus 8 karakter.',
-                'alpha_numeric' => 'Password hanya boleh berisi huruf dan angka.',
+            'judul' => [
+                'required' => 'Harap isi judul.',
+                'alpha_numeric' => 'Judul hanya boleh berisi huruf dan angka.',
             ],
-            'nama' => [
-                'required' => 'Harap isi nama.',
-                'alpha_numeric_space' => 'Nama hanya boleh berisi huruf, angka, dan spasi.',
+            'deskripsi' => [
+                'required' => 'Harap isi deskripsi.',
             ],
-            'level' => 'Harap pilih level.',
         ];
 
         // Melakukan validasi
@@ -72,27 +78,52 @@ class BeritaController extends BaseController
             return redirect()->back()->withInput()->with('error', implode('<br>', $this->validator->getErrors()));
         }
 
+        // Generate a unique filename for the uploaded image
+        $image = $this->request->getFile('gambar');
+        $imageName = uniqid() . '_' . time() . '.' . $image->getExtension();
+
+        // Move the uploaded image to the "uploads" folder
+        $image->move(ROOTPATH . 'public/uploads', $imageName);
+
         $gambar = $this->request->getPost('gambar');
         $judul = $this->request->getPost('judul');
         $deskripsi = $this->request->getPost('deskripsi');
 
         // Pemeriksaan apakah judul sudah ada
         if ($model->where('judul', $judul)->countAllResults() > 0) {
-            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data pengguna: Username sudah ada.');
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan Judul: Judul sudah ada.');
         }
 
         $data = [
-            'username' => $username,
-            'password' => $password,
-            'nama' => $nama,
-            'level' => $level,
+            'gambar' => $imageName,
+            'judul' => $judul,
+            'deskripsi' => $deskripsi,
         ];
 
         try {
             $model->insert($data);
-            return redirect()->to(base_url('dashboard/user'))->with('pesan', 'Data Pengguna Berhasil Ditambahkan');
+            return redirect()->to(base_url('dashboard/berita'))->with('pesan', 'Data Berita Berhasil Ditambahkan');
         } catch (\Exception $e) {
-            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data pengguna: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data Berita: ' . $e->getMessage());
         }
+    }
+
+    public function delete($id) 
+    {
+        $model = new BeritaModel();
+
+        // Dapatkan path gambar dari data yang akan dihapus
+        $data = $model->find($id);
+        $gambarPath = '/uploads' . $data['gambar'];
+
+        // Hapus file gambar dari sistem file
+        if (file_exists($gambarPath)) {
+            unlink($gambarPath);
+        }
+
+        // Lanjutkan untuk menghapus data dari database
+        $model->delete($id);
+
+        return redirect()->to(base_url('dashboard/berita'))->with('pesan','Data Berhasil Dihapus');
     }
 }
