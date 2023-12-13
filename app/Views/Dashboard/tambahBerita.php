@@ -7,15 +7,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/tempatCSS/bootstrap/bootstrap.rtl.min.css">
+    <!-- <link rel="stylesheet" href="/tempatCSS/bootstrap/bootstrap.rtl.min.css"> -->
     <link rel="stylesheet" href="/custom-css.css">
+    <link rel="stylesheet" href="/tempatCSS/bootstrap/bootstrap.rtl.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"  rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+
+<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
         <div class="flex items-center justify-start rtl:justify-end">
@@ -57,7 +59,7 @@
             </div>
         </div>
     </div>
-    </nav>
+</nav>
 
 <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -88,7 +90,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= base_url('/dashboard/berita') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                     <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
                 </svg>
@@ -97,7 +99,7 @@
             </li>
             <hr class="text-gray-600">
             <li>
-                <a href="<?= base_url('/dashboard/profile') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"/>
                     <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z"/>
@@ -110,81 +112,53 @@
     </div>
 </aside>
 
-
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <div class="container">
-            <h1 class="text-4xl text-blue-600 font-bold">Daftar Berita</h1>
-            <a href="<?= base_url('dashboard/berita/tambah') ?>" class="btn btn-success my-4"><i class="fa-solid fa-plus"></i> Tambah</a>
-            <?php if(session()->getFlashdata('pesan')): ?>
-                <div class="alert alert-success" role="alert">
-                    <?= session()->getFlashdata('pesan') ?>
-                </div>
-            <?php endif; ?>
+            <form method="post" action="<?= base_url('dashboard/berita/tambah') ?>">
+                <?php if (session()->getFlashdata('error')) : ?>
+                    <div class="alert alert-danger">
+                        <?php
+                        $errorData = session()->getFlashdata('error');
 
-            <form class="flex items-center" action="<?= base_url('dashboard/berita') ?>" method="post">   
-                <label for="simple-search" class="sr-only">Search</label>
-                <div class="relative w-full">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2"/>
-                        </svg>
+                        // Check if it's an array, if not, convert it to an array
+                        $errorArray = is_array($errorData) ? $errorData : [$errorData];
+
+                        echo implode('<br>', $errorArray);
+                        ?>
                     </div>
-                    <input name="keyword" type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Judul/Deskripsi Berita Anda..." required>
-                </div>
-                <button name="cari" type="submit" class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                    </svg>
-                    <span class="sr-only">Search</span>
-                </button>
-                    <?php if ($keyword) : ?>
-                        <a href="<?= base_url('dashboard/berita') ?>" class="bg-red-600 text-white rounded-lg p-2.5 text-sm font-medium text-gray-600 hover:bg-red-700 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-300">
-                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            <span class="sr-only">Reset Search</span>
-                        </a>
-                    <?php endif; ?>
-            </form>
+                <?php endif; ?>
 
-            <hr class="text-gray-600 mt-4">
-            <table class="border-collapse border border-slate-500 mt-4 w-full">
-                <thead>
-                    <tr>
-                        <th class="border border-slate-600 text-center">ID</th>
-                        <th class="border border-slate-600 text-center">GAMBAR</th>
-                        <th class="border border-slate-600 text-center">JUDUL</th>
-                        <th class="border border-slate-600 text-center">DESKRIPSI</th>
-                        <th class="border border-slate-600 text-center">Edit / Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        $no = 1;
-                        foreach($berita as $asep):
-                    ?>
-                    <tr>
-                        <td class="border border-slate-700 p-2"><?= $no ?></td>
-                        <td class="border border-slate-700 p-2"><?= $asep['gambar']?></td>
-                        <td class="border border-slate-700 p-2"><?= $asep['judul']?></td>
-                        <td class="border border-slate-700 p-2"><?= $asep['deskripsi'] ?></td>
-                        <td class="border border-slate-700 p-2 text-center">
-                            <a class="btn btn-success mb-2" href="<?= base_url('dashboard/berita/edit/'.$asep['id']) ?>"><i class="fa-solid fa-pencil"></i> Edit</a>
-                            <a class="btn btn-danger" href="<?= base_url('dashboard/berita/delete/'.$asep['id']) ?>"><i class="fa-solid fa-trash"></i> Hapus</a>
-                        </td>
-                    </tr>
-                    <?php $no++; endforeach; ?>
-                </tbody>
-            </table>
+                <div class="mb-3">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="gambar">Upload Gambar</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="gambar" name="gambar" type="file">
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPEG, PNG, JPG (MAX. 800x400px).</p>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul</label>
+                    <input type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="judul" name="judul" placeholder="Pada Suatu Hari Ada Sosok Simajuntak" required>
+                    <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Judul Hanya Boleh Alpha Numeric Contoh: ( A - Z | 1 - 9 )</p>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
+                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bla Bla Bla Bla" id="deskripsi" name="deskripsi" required>
+                </div>
+                <!-- <div class="mb-3">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input gambar" name="gambar" type="file">
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG or JPEG.</p>
+                </div> -->
+                <div class="d-flex mt-4">
+                    <button type="submit" name="submitEdit" class="btn btn-success mr-3 bg-green-500 hover:bg-green-700 border-none " onclick="return validateForm()">Submit</button>
+                    <a href="<?= base_url('dashboard/berita') ?>" class="btn btn-primary">Kembali</a>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
 
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <script src="/tempatJS/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="/custom-js.js"></script>
 </body>

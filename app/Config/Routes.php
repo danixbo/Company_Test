@@ -37,6 +37,15 @@ $routes->get('/dashboard/user/delete/(:num)', 'UserController::delete/$1');
 $routes->get('/dashboard/user/edit/(:num)', 'UserController::edit/$1');
 $routes->post('/dashboard/user/update/(:num)', 'UserController::update/$1');
 
+// <------------------------------ DASHBOARD BERITA ------------------------------>
+
+$routes->get('/dashboard/berita', 'BeritaController::dashboardBerita');
+$routes->post('/dashboard/berita', 'BeritaController::dashboardBerita');
+$routes->get('/dashboard/berita/tambah', 'BeritaController::tambahBerita');
+$routes->post('/dashboard/berita/tambah', 'BeritaController::tambahFunction');
+$routes->get('/dashboard/berita/delete/(:num)', 'BeritaController::delete/$1');
+$routes->get('/dashboard/berita/edit/(:num)', 'BeritaController::edit/$1');
+$routes->post('/dashboard/berita/update/(:num)', 'BeritaController::update/$1');
 
 // <------------------------------ PROFILE ------------------------------>
 
