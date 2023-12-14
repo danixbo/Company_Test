@@ -15,6 +15,9 @@ $routes->post('/kontak/tambah', 'HalamanController::tambahFunction');
 $routes->get('/register', 'HalamanController::register');
 $routes->post('/register/prosesRegister', 'HalamanController::tambahUser');
 
+// <------------------------------ DASHBOARD ------------------------------>
+
+$routes->get('/dashboard', 'HalDashboardController::index');
 
 // <------------------------------ DASHBOARD KONTAK ------------------------------>
 

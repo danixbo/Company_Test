@@ -209,8 +209,9 @@
                                         <option value="Admin" <?= ($data['level'] == 'admin') ? 'selected' : '' ?>>Admin</option>
                                     </select>
                                 </div>
-                                <div class="col-span-6 sm:col-full">
+                                <div class="col-span-6 sm:col-full flex justify-between">
                                     <button class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="submit">Save all</button>
+                                    <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Perlu Di ingat!, setelah mengupdate data disarankan untuk login ulang</p>
                                 </div>
                             </div>
                         </form>

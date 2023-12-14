@@ -52,7 +52,7 @@ class BeritaController extends BaseController
         // Validasi input
         $validationRules = [
             'gambar' => 'uploaded[gambar]|max_size[gambar,1024]|is_image[gambar]|ext_in[gambar,jpg,jpeg,png]',
-            'judul' => 'required|alpha_numeric',
+            'judul' => 'required',
             'deskripsi' => 'required',
         ];
 
@@ -65,7 +65,6 @@ class BeritaController extends BaseController
             ],
             'judul' => [
                 'required' => 'Harap isi judul.',
-                'alpha_numeric' => 'Judul hanya boleh berisi huruf dan angka.',
             ],
             'deskripsi' => [
                 'required' => 'Harap isi deskripsi.',
@@ -92,6 +91,10 @@ class BeritaController extends BaseController
         // Pemeriksaan apakah judul sudah ada
         if ($model->where('judul', $judul)->countAllResults() > 0) {
             return redirect()->back()->withInput()->with('error', 'Gagal menambahkan Judul: Judul sudah ada.');
+        }
+        // Pemeriksaan apakah sudah mencapai batas berita
+        if ($model->countAllResults() >= 5) {
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan Berita: Batas berita sudah mencapai 5. Harap hapus salah satu berita.');
         }
 
         $data = [

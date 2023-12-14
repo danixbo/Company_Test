@@ -80,8 +80,7 @@ public function dataUpdate()
 
         if ($model->update(session()->get('user_id'), $data)) {
             // Clear the user's session data after 5 seconds
-            sleep(5);
-            session()->destroy();
+            // session()->destroy();
 
             return redirect()->to(base_url('dashboard/profile'))->with('pesan', 'Data Berhasil Diupdate, Silahkan Login Kembali Untuk Melihat Perubahan.');
         }
