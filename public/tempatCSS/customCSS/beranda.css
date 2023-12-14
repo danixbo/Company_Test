@@ -50,6 +50,8 @@ header {
 }
 
 .logo {
+    font-size: 29px;
+    font-weight: 700;
     cursor: pointer;
     transition: all .5s ease 0s;
     color: #333333;
@@ -168,6 +170,7 @@ header {
 }
 
 .intro {
+    width: 68%;
     overflow-y: hidden;
     padding: 40px 50px;
     /* border: 1px solid black; */
