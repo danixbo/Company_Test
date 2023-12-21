@@ -14,19 +14,12 @@ class BeritaController extends BaseController
         $keyword = $this->request->getVar('keyword');
 
         if ($keyword) {
-            $users = $model->like('judul', $keyword)
+            $users = $model->like('gambar', $keyword)
+                ->orLike('judul', $keyword)
                 ->orLike('deskripsi', $keyword)
                 ->findAll();
 
             $data['berita'] = $users;
-
-            if (!empty($users)) {
-                // User found, set success message
-                session()->setFlashdata('success', 'User successfully found.');
-            } else {
-                // User not found, set a different message if needed
-                session()->setFlashdata('info', 'No users found with the given keyword.');
-            }
         } else {
             $berita = $model->findAll();
             // Mengubah teks menjadi URL gambar
@@ -109,6 +102,64 @@ class BeritaController extends BaseController
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data Berita: ' . $e->getMessage());
         }
+    }
+
+    public function edit($id)
+    {
+        $BeritaModel = new BeritaModel();
+        // Ambil data berdasarkan primary key yang dikirim
+        $data = $BeritaModel->find($id);
+
+        return view('Dashboard/editBerita', ['data' => $data]);
+    }
+
+    public function update($id)
+    {
+        $model = new BeritaModel();
+
+        // Validasi input
+        $validationRules = [
+            'gambar' => 'uploaded[gambar]|max_size[gambar,1024]|is_image[gambar]|ext_in[gambar,jpg,jpeg,png]',
+            'judul' => 'required',
+            'deskripsi' => 'required',
+        ];
+
+        $validationMessages = [
+            'gambar' => [
+                'uploaded' => 'Harap pilih gambar untuk diunggah.',
+                'max_size' => 'Ukuran gambar tidak boleh melebihi 1 MB.',
+                'is_image' => 'File yang diunggah harus berupa gambar.',
+                'ext_in' => 'Format gambar yang diizinkan adalah jpg, jpeg, atau png.',
+            ],
+            'judul' => [
+                'required' => 'Harap isi judul.',
+            ],
+            'deskripsi' => [
+                'required' => 'Harap isi deskripsi.',
+            ],
+        ];
+
+        if (!$this->validate($validationRules, $validationMessages)) {
+            session()->setFlashdata('error', $this->validator->getErrors());
+            return redirect()->back()->withInput();
+        }
+
+        $gambar = $this->request->getFile('gambar'); // Retrieve the uploaded image file
+        $gambarName = $gambar->getRandomName(); // Generate a unique name for the image
+
+        $gambar->move('uploads', $gambarName); // Move the uploaded image to the "uploads" folder with the unique name
+
+        $data = [
+            'gambar' => $gambarName,
+            'judul' => $this->request->getPost('judul'),
+            'deskripsi' => $this->request->getPost('deskripsi'),
+        ];
+
+        if ($model->update($id, $data)) {
+            return redirect()->to(base_url('dashboard/berita'))->with('pesan', 'Berita Berhasil Diupdate');
+        }
+
+        return redirect()->back()->with('pesan', 'Gagal memperbarui berita.');
     }
 
     public function delete($id) 

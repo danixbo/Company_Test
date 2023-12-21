@@ -14,7 +14,7 @@ class Logout extends Controller
         session()->destroy();
 
         // Redirect ke halaman login
-        return redirect()->to(base_url('/login'));
+        return redirect()->to(base_url('/beranda'));
     }
 
     // ...

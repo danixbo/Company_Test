@@ -178,8 +178,8 @@
                         <td class="border border-slate-700 p-2"><?= $jamal['subject'] ?></td>
                         <td class="border border-slate-700 p-2"><?= $jamal['pesan'] ?></td>
                         <td class="border border-slate-700 p-2 text-center">
-                            <a class="btn btn-success mb-2" href="<?= base_url('dashboard/kontak/edit/'.$jamal['id']) ?>"><i class="fa-solid fa-pencil"></i> Edit</a>
-                            <a class="btn btn-danger" href="<?= base_url('dashboard/kontak/delete/'.$jamal['id']) ?>"><i class="fa-solid fa-trash"></i> Hapus</a>
+                            <a class="btn btn-success mb-2" href="<?= base_url('dashboard/kontak/edit/'.$jamal['id']) ?>"><i class="fa-solid fa-pencil"></i></a>
+                            <a class="btn btn-danger" href="<?= base_url('dashboard/kontak/delete/'.$jamal['id']) ?>"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php $no++; endforeach; ?>

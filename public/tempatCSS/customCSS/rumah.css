@@ -1,0 +1,198 @@
+*,
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #c3c5fa;
+}
+/* <----------------------------------------- NAVBAR -----------------------------------------> */
+
+
+header {
+    padding: 0px 30px;
+    animation: navBar 2s ease 0s 1 normal forwards;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+    top: 2%;
+    left: 25%;
+    position: fixed;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.5s ease-in;
+    /* From https://css.glass */
+    background: rgba(228, 228, 228, 0.14);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.4px);
+    -webkit-backdrop-filter: blur(5.4px);
+    border: 1px solid rgba(255, 255, 255, 0.34);
+}
+
+
+
+@keyframes navBar {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .5s ease 0s;
+    color: #143d59;
+    /* color: rgb(219, 236, 254); */
+}
+
+.logo:hover {
+    color: #0f9a6b;
+}
+
+.btn-logreg {
+    transition: all .5 ease;
+}
+
+.toggle-btn {
+    color: #143d59;
+    font-size: 1.8rem;
+    display: none;
+    cursor: pointer;
+}
+
+.logreg {
+    font-size: 15px;
+    margin: 0px 7px;
+    color: #fdeeea;
+    border: none;
+    background-color: #143d59;
+    padding: 9px 14px;
+    border-radius: 10px;
+    transition: all .5s ease 0s;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.logreg:hover {
+    background-color: #eaf890;
+    color: #143d59;
+}
+
+
+.navbar {
+    padding: 20px;
+}
+
+.navbar a {
+    position: relative;
+    transition: all .5s ease;
+    padding: 0px 10px;
+    text-decoration: none;
+    color: #143d59;
+    /* color: rgb(124, 97, 0); */
+    /* color: rgb(219, 236, 254); */
+}
+
+.navbar a:before {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    height: 4px;
+    width: 0;
+    background: grey;
+    border-radius: 50px;
+    transition: width .3s ease;
+}
+
+.navbar a:hover:before {
+    width: 80%;
+}
+
+.dropdown-menu {
+    margin-top: 12px;
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    top: 86px;
+    width: 100%;
+    left: 0;
+    height: 0;
+    justify-content: center;
+    gap: 20px;
+    display: flex;
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    text-align: center;
+    transition: height .5s ease;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.4px);
+    -webkit-backdrop-filter: blur(5.4px);
+}
+
+.dropdown-menu.open {
+    height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+/* <----------------------------------------- RESPONSIVE -----------------------------------------> */
+
+@media screen and (max-width: 1468px) {
+    .logo {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .logreg {
+        display: none;
+    }
+
+    .toggle-btn {
+        color: #333333;
+        display: block;
+    }
+
+    .dropdown-menu {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 1469px) {
+    .toggle-btn {
+        display: none;
+    }
+
+    .dropdown-menu {
+        display: none;
+    }
+
+}

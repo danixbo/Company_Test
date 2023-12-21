@@ -32,8 +32,16 @@ class LoginController extends Controller
             session()->set('user_id', $user['id']);
             session()->set('nama_lengkap', $user['nama']);
             session()->set('username', $user['username']);
+            session()->set('level', $user['level']);
 
-            return redirect()->to(base_url('/dashboard/kontak'));
+            // Add the 'level' session variable with the value 'writer'
+            session()->set('level', 'writter');
+
+            // Add the 'level' session variable with the value 'member'
+            session()->set('level', 'member');
+
+
+            return redirect()->to(base_url('/beranda'));
         } else {
             return redirect()->to(base_url('/login'))->withInput()->with('error', 'Login gagal. Periksa username dan password Anda.');
         }

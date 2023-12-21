@@ -15,7 +15,8 @@
 </head>
 
 <body>
-    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+
+<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
         <div class="flex items-center justify-start rtl:justify-end">
@@ -57,7 +58,7 @@
             </div>
         </div>
     </div>
-    </nav>
+</nav>
 
 <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -80,7 +81,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= base_url('/dashboard/kontak') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="<?= base_url('/dashboard') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
                 </svg>
@@ -116,84 +117,166 @@
     </div>
 </aside>
 
-
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-        <div class="container">
-            <h1 class="text-4xl text-blue-600 font-bold">Daftar Berita</h1>
-            <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Peringatan! maksimal hanya 5 berita</p>
-            <a href="<?= base_url('dashboard/berita/tambah') ?>" class="btn btn-success my-4"><i class="fa-solid fa-plus"></i> Tambah</a>
-            <?php if(session()->getFlashdata('pesan')): ?>
-                <div class="alert alert-success" role="alert">
-                    <?= session()->getFlashdata('pesan') ?>
-                </div>
-            <?php endif; ?>
-
-            <form class="flex items-center" action="<?= base_url('dashboard/berita') ?>" method="post">   
-                <label for="simple-search" class="sr-only">Search</label>
-                <div class="relative w-full">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2"/>
-                        </svg>
-                    </div>
-                    <input name="keyword" type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Judul/Deskripsi Berita Anda..." required>
-                </div>
-                <button name="cari" type="submit" class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                    </svg>
-                    <span class="sr-only">Search</span>
-                </button>
-                    <?php if ($keyword) : ?>
-                        <a href="<?= base_url('dashboard/berita') ?>" class="bg-red-600 text-white rounded-lg p-2.5 text-sm font-medium text-gray-600 hover:bg-red-700 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-300">
-                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        <div class="container flex flex-wrap">
+            <div class="user-intro container flex justify-between">
+                <div class="w-2/5 items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                    <div class="w-full">
+                        <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Pengunjung Website</h3>
+                        <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">2,340</span>
+                        <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                        <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path clip-rule="evenodd" fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"></path>
                             </svg>
-                            <span class="sr-only">Reset Search</span>
-                        </a>
-                    <?php endif; ?>
-            </form>
+                            12.5% 
+                        </span>
+                        Sejak bulan lalu
+                        </p>
+                    </div>
+                    <div class="w-full" id="new-products-chart"></div>
+                </div>
+                <div class="w-2/5 items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                    <div class="w-full">
+                        <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Rumah terjual</h3>
+                        <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">2,340</span>
+                        <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                        <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path clip-rule="evenodd" fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"></path>
+                            </svg>
+                            12.5% 
+                        </span>
+                        Sejak bulan lalu
+                        </p>
+                    </div>
+                    <div class="w-full" id="new-products-chart"></div>
+                </div>
+            </div>
+            <hr class="text-gray-600 w-full my-4">
 
-            <hr class="text-gray-600 mt-4">
-            <table class="border-collapse border border-slate-500 mt-4 w-full">
-                <thead>
-                    <tr>
-                        <th class="border border-slate-600 text-center">ID</th>
-                        <th class="border border-slate-600 text-center">GAMBAR</th>
-                        <th class="border border-slate-600 text-center">JUDUL</th>
-                        <th class="border border-slate-600 text-center">DESKRIPSI</th>
-                        <th class="border border-slate-600 text-center">Edit / Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        $no = 1;
-                        foreach($berita as $asep):
-                    ?>
-                    <tr>
-                        <td class="border border-slate-700 p-2"><?= $no ?></td>
-                        <td class="border border-slate-700 p-2 flex justify-center">
-                            <img src="<?= $asep['gambar'] ?>" alt="<?= $asep['judul'] ?>" width="100">
-                        </td>
-                        <td class="border border-slate-700 p-2"><?= $asep['judul']?></td>
-                        <td class="border border-slate-700 p-2"><?= $asep['deskripsi'] ?></td>
-                        <td class="border border-slate-700 p-2 text-center">
-                            <a class="btn btn-success mb-2" href="<?= base_url('dashboard/berita/edit/'.$asep['id']) ?>"><i class="fa-solid fa-pencil"></i></a>
-                            <a class="btn btn-danger" href="<?= base_url('dashboard/berita/delete/'.$asep['id']) ?>"><i class="fa-solid fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    <?php $no++; endforeach; ?>
-                </tbody>
-            </table>
+            <div class="chart-user p-3">
+                <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+                <div class="flex justify-between">
+                    <div>
+                    <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
+                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Pengunjung Website</p>
+                    </div>
+                    <div
+                    class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
+                    12%
+                    <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+                    </svg>
+                    </div>
+                </div>
+                <div id="area-chart"></div>
+                <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+                    <div class="flex justify-between items-center pt-5">
+                    <!-- Button -->
+                    <button
+                        id="dropdownDefaultButton"
+                        data-dropdown-toggle="lastDaysdropdown"
+                        data-dropdown-placement="bottom"
+                        class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+                        type="button">
+                        Last 7 days
+                    </button>
+                    <a
+                        href="#"
+                        class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+                        Users Report
+                        <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                        </svg>
+                    </a>
+                    </div>
+                </div>
+                </div>
+            </div>  
         </div>
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+<script>
+    // ApexCharts options and config
+    window.addEventListener("load", function() {
+        let options = {
+        chart: {
+            height: "100%",
+            maxWidth: "100%",
+            type: "area",
+            fontFamily: "Inter, sans-serif",
+            dropShadow: {
+            enabled: false,
+            },
+            toolbar: {
+            show: false,
+            },
+        },
+        tooltip: {
+            enabled: true,
+            x: {
+            show: false,
+            },
+        },
+        fill: {
+            type: "gradient",
+            gradient: {
+            opacityFrom: 0.55,
+            opacityTo: 0,
+            shade: "#1C64F2",
+            gradientToColors: ["#1C64F2"],
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        stroke: {
+            width: 7,
+        },
+        grid: {
+            show: false,
+            strokeDashArray: 4,
+            padding: {
+            left: 2,
+            right: 2,
+            top: 0
+            },
+        },
+        series: [
+            {
+            name: "Total Pengunjung",
+            data: [6500, 6418, 6456, 6526, 6356, 6456, 6590],
+            color: "#1A56DB",
+            },
+        ],
+        xaxis: {
+            categories: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February'],
+            labels: {
+            show: false,
+            },
+            axisBorder: {
+            show: false,
+            },
+            axisTicks: {
+            show: false,
+            },
+        },
+        yaxis: {
+            show: false,
+        },
+        }
 
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+        if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
+        const chart = new ApexCharts(document.getElementById("area-chart"), options);
+        chart.render();
+        }
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="/tempatJS/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="/custom-js.js"></script>
 </body>

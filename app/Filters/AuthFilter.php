@@ -12,7 +12,11 @@ class AuthFilter implements FilterInterface
     {
         // Periksa apakah pengguna telah login
         if (!session()->has('user_id')) {
-            return redirect()->to(base_url('/dashboard/kontak'));
+            // Simpan URL yang dicoba diakses
+            $requestedURL = $request->uri->getPath();
+
+            // Alihkan pengguna ke halaman login dengan pesan error
+            return redirect()->to(base_url('/login'))->with('error', 'Anda harus login untuk mengakses ' . $requestedURL);
         }
     }
 
@@ -21,6 +25,10 @@ class AuthFilter implements FilterInterface
         // ...
     }
 }
+
+
+
+
 
 
 

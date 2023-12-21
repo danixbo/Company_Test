@@ -185,9 +185,35 @@
                         <td class="border border-slate-700 p-2"><?= $userData['nama'] ?></td>
                         <td class="border border-slate-700 p-2"><?= $userData['level'] ?></td>
                         <td class="border border-slate-700 p-2 text-center">
-                            <a class="btn btn-success" href="<?= base_url('dashboard/user/edit/'.$userData['id']) ?>"><i class="fa-solid fa-pencil"></i> Edit</a>
-                            <a class="btn btn-danger" href="<?= base_url('dashboard/user/delete/'.$userData['id']) ?>">  <i class="fa-solid fa-trash"></i> Hapus</a>
+                            <a class="btn btn-primary" href="<?= base_url('dashboard/user/'.$userData['id']) ?>"><i class="fa-solid fa-eye"></i></a>
+                            <a class="btn btn-success" href="<?= base_url('dashboard/user/edit/'.$userData['id']) ?>"><i class="fa-solid fa-pencil"></i></a>
+                            <a class="btn btn-danger" href="<?= base_url('dashboard/user/delete/'.$userData['id']) ?>">  <i class="fa-solid fa-trash"></i></a>
                         </td>
+
+                        <div id="info-popup" class="hidden overflow-y-auto overflow-x-hidden fixed top-1/2 right-1/2 left-1/2 z-50 w-full md:inset-0 h-modal md:h-full flex items-center justify-center bg-black bg-opacity-50">
+                        <div class="relative p-4 w-full max-w-lg h-full md:h-auto">
+                            <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 md:p-8">
+                                <div class="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
+                                    <h3 class="mb-3 text-2xl font-bold text-gray-900 dark:text-white">Data Dari : <?= $userData['nama']?></h3>
+                                    <hr class="text-gray-600 mb-3">
+                                    <p>
+                                        <ul class="text-sm font-semibold bg-gradient-to-r from-slate-400 to-slate-500 bg-clip-text text-transparent dark:text-gray-400">
+                                            <li>Username : <?= $userData['username']?></li>
+                                            <li>Password : <?= $userData['password']?></li>
+                                            <li>Nama     : <?= $userData['nama']?></li>
+                                            <li>Level    : <?= $userData['level']?></li>
+                                        </ul>
+                                    </p>
+                                    <hr class="text-gray-600 mb-3 mt-3">
+                                </div>
+                                <div class="justify-between items-center pt-0 space-y-4 sm:flex sm:space-y-0">
+                                    <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">
+                                        <button onclick="location.href='<?= base_url('dashboard/user')?>'" id="closeButton" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
                     </tr>
                     <?php $no++; endforeach; ?>
                 </tbody>
@@ -196,6 +222,26 @@
     </div>
 </div>
 
+<script>
+    function showPopup(userDataId) {
+        var popup = document.getElementById("info-popup");
+        popup.classList.remove("hidden");
+
+        // Tambahkan kode berikut untuk menampilkan data yang sesuai dengan nomor yang diklik
+        var userData = <?= json_encode($userData) ?>;
+        var dataDari = document.getElementById("data-dari");
+        var username = document.getElementById("username");
+        var password = document.getElementById("password");
+        var nama = document.getElementById("nama");
+        var level = document.getElementById("level");
+
+        dataDari.innerText = "Data Dari: " + userData[userDataId]['nama'];
+        username.innerText = "Username: " + userData[userDataId]['username'];
+        password.innerText = "Password: " + userData[userDataId]['password'];
+        nama.innerText = "Nama: " + userData[userDataId]['nama'];
+        level.innerText = "Level: " + userData[userDataId]['level'];
+    }
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <script src="/tempatJS/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="/custom-js.js"></script>

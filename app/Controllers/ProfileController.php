@@ -25,9 +25,10 @@ public function dataUpdate()
         // Validasi input
         $validationRules = [
             'username' => [
-                'rules' => 'required|is_unique[user.username,id,' . session()->get('user_id') . ']|alpha_numeric',
+                'rules' => 'required|min_length[8]|is_unique[user.username,id,' . session()->get('user_id') . ']|alpha_numeric',
                 'errors' => [
                     'required' => 'Harap isi username.',
+                    'min_length' => 'Username minimal harus 8 karakter.',
                     'is_unique' => 'Username sudah digunakan. Pilih username lain.',
                     'alpha_numeric' => 'Username hanya boleh berisi huruf dan angka.',
                 ],
@@ -52,6 +53,7 @@ public function dataUpdate()
         $validationMessages = [
             'username' => [
                 'required' => 'Harap isi username.',
+                'min_length' => 'Username minimal harus 8 karakter.',
                 'is_unique' => 'Username sudah digunakan. Pilih username lain.',
                 'alpha_numeric' => 'Username hanya boleh berisi huruf dan angka.',
             ],

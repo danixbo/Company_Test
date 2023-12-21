@@ -57,7 +57,7 @@ class UserController extends BaseController
 
         // Validasi input
         $validationRules = [
-            'username' => 'required|is_unique[user.username]|alpha_numeric',
+            'username' => 'required|min_length[8]|is_unique[user.username]|alpha_numeric',
             'password' => 'required|min_length[8]|alpha_numeric',
             'nama' => 'required|alpha_numeric_space',
             'level' => 'required',
@@ -66,6 +66,7 @@ class UserController extends BaseController
         $validationMessages = [
             'username' => [
                 'required' => 'Harap isi username.',
+                'min_length' => 'Username minimal harus 8 karakter.',
                 'is_unique' => 'Username sudah ada. Pilih username lain.',
                 'alpha_numeric' => 'Username hanya boleh berisi huruf dan angka.',
             ],
@@ -195,6 +196,8 @@ class UserController extends BaseController
 
         return redirect()->back()->with('pesan', 'Gagal memperbarui data.');
     }
+
+
 
 }
 

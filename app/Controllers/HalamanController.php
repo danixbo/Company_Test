@@ -29,9 +29,26 @@ class HalamanController extends BaseController
     public function index()
     {
         $beritaModel = new BeritaModel();
-        $data['berita'] = $beritaModel->findAll();
+        $keyword = $this->request->getVar('keyword');
+
+        if ($keyword) {
+            $users = $beritaModel->like('gambar', $keyword)
+                ->orLike('judul', $keyword)
+                ->orLike('deskripsi', $keyword)
+                ->findAll();
+
+            $data['berita'] = $users;
+        } else {
+            $data['berita'] = $beritaModel->findAll();
+        }
+
+        $data['keyword'] = $keyword; // Ensure $keyword is defined
 
         return view('Halaman/beranda', $data);
+        // $beritaModel = new BeritaModel();
+        // $data['berita'] = $beritaModel->findAll();
+
+        // return view('Halaman/beranda', $data);
     }
 
     public function kontak()
@@ -45,7 +62,7 @@ class HalamanController extends BaseController
 
         // Validasi input
         $validationRules = [
-            'username' => 'required|is_unique[user.username]|alpha_numeric',
+            'username' => 'required|is_unique[user.username]|min_length[8]|alpha_numeric',
             'password' => 'required|min_length[8]|alpha_numeric',
             'nama' => 'required|alpha_numeric_space',
             'level' => 'required',
@@ -54,6 +71,7 @@ class HalamanController extends BaseController
         $validationMessages = [
             'username' => [
                 'required' => 'Harap isi username.',
+                'min_length' => 'Username minimal harus 8 karakter.',
                 'is_unique' => 'Username sudah ada. Pilih username lain.',
                 'alpha_numeric' => 'Username hanya boleh berisi huruf dan angka.',
             ],

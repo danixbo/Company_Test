@@ -70,6 +70,26 @@ class Filters extends BaseConfig
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
     public array $filters = [
-        'auth' => ['before' => ['/dashboard/kontak', 'dashboard/user', 'dashboard/user/tambah', 'dashboard/user/edit', 'dashboard/kontak/tambah', 'dashboard/kontak/edit', 'dashboard/profile', '/dashboard/profile/update', '/dashboard/berita', '/dashboard/berita/tambah', '/dashboard/berita/delete/', '/dashboard/berita/edit', '/dashboard/berita/update']],
+        'auth' => ['before' => [
+            '/dashboard',
+            '/dashboard/user',
+            '/dashboard/user/tambah',
+            '/dashboard/user/edit',
+            '/dashboard/user/update',
+            '/dashboard/user/delete',
+            '/dashboard/kontak',
+            '/dashboard/kontak/tambah',
+            '/dashboard/kontak/delete',
+            '/dashboard/kontak/edit',
+            '/dashboard/kontak/update',
+            '/dashboard/profile',
+            '/dashboard/profile/update',
+            '/dashboard/berita',
+            '/dashboard/berita/tambah',
+            '/dashboard/berita/delete',
+            '/dashboard/berita/edit',
+            '/dashboard/berita/update'
+        ]],
+
     ];
 }
