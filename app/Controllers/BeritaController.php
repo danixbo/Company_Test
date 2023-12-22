@@ -138,7 +138,7 @@ class BeritaController extends BaseController
                 'required' => 'Harap isi deskripsi.',
             ],
         ];
-
+        
         if (!$this->validate($validationRules, $validationMessages)) {
             session()->setFlashdata('error', $this->validator->getErrors());
             return redirect()->back()->withInput();

@@ -88,7 +88,12 @@ class Filters extends BaseConfig
             '/dashboard/berita/tambah',
             '/dashboard/berita/delete',
             '/dashboard/berita/edit',
-            '/dashboard/berita/update'
+            '/dashboard/berita/update',
+            '/dashboard/produk',
+            '/dashboard/produk/tambah',
+            '/dashboard/produk/delete',
+            '/dashboard/produk/edit',
+            '/dashboard/produk/update'
         ]],
 
     ];

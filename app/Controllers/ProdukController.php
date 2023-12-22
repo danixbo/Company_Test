@@ -42,9 +42,9 @@ class ProdukController extends BaseController
         // Validasi input
         $validationRules = [
             'gambar_rumah' => 'uploaded[gambar_rumah]|max_size[gambar_rumah,1024]|is_image[gambar_rumah]|ext_in[gambar_rumah,jpg,jpeg,png]',
-            'nama_rumah' => 'required|alpha_numeric',
+            'nama_rumah' => 'required',
             'perlengkapan_rumah' => 'required',
-            'harga_rumah' => 'required|alpha_numeric',
+            'harga_rumah' => 'required',
             'nomor_rumah' => 'required|alpha_numeric',
         ];
 
@@ -57,14 +57,12 @@ class ProdukController extends BaseController
             ],
             'nama_rumah' => [
                 'required' => 'Harap isi nama rumah.',
-                'alpha_numeric' => 'Nama rumah hanya boleh berisi huruf dan angka.',
             ],
             'perlengkapan_rumah' => [
                 'required' => 'Harap isi perlengkapan.',
             ],
             'harga_rumah' => [
                 'required' => 'Harap isi harga rumah.',
-                'alpha_numeric' => 'Harga rumah hanya boleh berisi huruf dan angka.',
             ],
             'nomor_rumah' => [
                 'required' => 'Harap isi nomor rumah.',
@@ -136,9 +134,9 @@ class ProdukController extends BaseController
         // Validasi input
         $validationRules = [
             'gambar_rumah' => 'uploaded[gambar_rumah]|max_size[gambar_rumah,1024]|is_image[gambar_rumah]|ext_in[gambar_rumah,jpg,jpeg,png]',
-            'nama_rumah' => 'required|alpha_numeric',
+            'nama_rumah' => 'required',
             'perlengkapan_rumah' => 'required',
-            'harga_rumah' => 'required|alpha_numeric',
+            'harga_rumah' => 'required',
             'nomor_rumah' => 'required|alpha_numeric',
         ];
 
@@ -151,14 +149,14 @@ class ProdukController extends BaseController
             ],
             'nama_rumah' => [
                 'required' => 'Harap isi nama rumah.',
-                'alpha_numeric' => 'Nama rumah hanya boleh berisi huruf dan angka.',
             ],
             'perlengkapan_rumah' => [
                 'required' => 'Harap isi perlengkapan.',
             ],
             'harga_rumah' => [
                 'required' => 'Harap isi harga rumah.',
-                'alpha_numeric' => 'Harga rumah hanya boleh berisi huruf dan angka.',
+                // 'alpha_dash' => 'Harga rumah hanya boleh berisi huruf, angka, garis bawah (_), dan titik (.)',
+                // 'alpha_numeric' => 'Harga rumah hanya boleh berisi huruf dan angka.',
             ],
             'nomor_rumah' => [
                 'required' => 'Harap isi nomor rumah.',
@@ -170,6 +168,8 @@ class ProdukController extends BaseController
             session()->setFlashdata('error', implode('<br>', $this->validator->getErrors()));
             return redirect()->back()->withInput();
         }
+
+        
 
         $gambarRumah = $this->request->getFile('gambar_rumah'); // Retrieve the uploaded image file
         $gambarName = $gambarRumah->getRandomName(); // Generate a unique name for the image
@@ -183,7 +183,7 @@ class ProdukController extends BaseController
             'harga_rumah' => $this->request->getPost('harga_rumah'),
             'nomor_rumah' => $this->request->getPost('nomor_rumah'),
         ];
-
+        // dd($data);
         if ($model->update($id, $data)) {
             return redirect()->to(base_url('dashboard/produk'))->with('pesan', 'Produk Berhasil Diupdate');
         }

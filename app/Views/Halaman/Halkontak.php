@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Kontak Kami</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/tempatCSS/customCSS/kontak.css">
@@ -13,9 +14,8 @@
     <header id="header">
         <h1 class="logo">LOGO</h1>
         <nav class="navbar">
-            <a href="/">Beranda</a>
-            <a href="#itungan">Layanan</a>
-            <a href="#footer-profile">Berita</a>
+            <a href="/beranda">Beranda</a>
+            <a href="/produk">Produk</a>
             <a href="/kontak">Kontak</a>
         </nav>
         <!-- tombol login register -->
@@ -24,7 +24,6 @@
                 <button class="logreg" onclick="location.href='login';">LOGIN</button>
                 <button class="logreg" onclick="location.href='register';">REGISTER</button>
             </div>
-
         <?php else: ?>
             <!-- Dropdown menu -->
             <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="transition ease-in-out delay-30 text-black bg-gray-400 hover:text-white hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Menu <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -53,17 +52,17 @@
 
         <?php endif; ?>
 
+
         <div class="toggle-btn">
             <i class="fa-solid fa-bars"></i>
         </div>
         <div class="dropdown-menu">
-            <a href="index.html#intro">Beranda</a>
-            <a href="#itungan">Layanan</a>
-            <a href="#footer-profile">Berita</a>
-            <a href="#">Kontak</a>
+            <a href="/beranda">Beranda</a>
+            <a href="/produk">Produk</a>
+            <a href="/kontak">Kontak</a>
         <?php if (!session()->has('user_id')): ?>
-            <a href="login">Login</a> 
-            <a href="register">Register</a>
+            <a href="/login">Login</a> 
+            <a href="/register">Register</a>
         <?php else: ?>
             <a href="<?= base_url('dashboard/kontak') ?>">Dashboard</a>
             <a href="<?= base_url('dashboard/profile') ?>">Settings</a>
@@ -164,5 +163,6 @@
     toggleBtnIcon.classList = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
     };
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 </body>
 </html>

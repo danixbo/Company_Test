@@ -64,7 +64,7 @@
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="<?= base_url('/dashboard') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
@@ -101,7 +101,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-cart-plus-fill flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 16 16">
                     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
                 </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Produk</span>
+                <span class="ml-3 flex-1 ms-3 whitespace-nowrap">Produk</span>
                 </a>
             </li>
             <hr class="text-gray-600">
@@ -193,35 +193,9 @@
                         <td class="border border-slate-700 p-2"><?= $userData['nama'] ?></td>
                         <td class="border border-slate-700 p-2"><?= $userData['level'] ?></td>
                         <td class="border border-slate-700 p-2 text-center">
-                            <a class="btn btn-primary" href="<?= base_url('dashboard/user/'.$userData['id']) ?>"><i class="fa-solid fa-eye"></i></a>
                             <a class="btn btn-success" href="<?= base_url('dashboard/user/edit/'.$userData['id']) ?>"><i class="fa-solid fa-pencil"></i></a>
                             <a class="btn btn-danger" href="<?= base_url('dashboard/user/delete/'.$userData['id']) ?>">  <i class="fa-solid fa-trash"></i></a>
                         </td>
-
-                        <div id="info-popup" class="hidden overflow-y-auto overflow-x-hidden fixed top-1/2 right-1/2 left-1/2 z-50 w-full md:inset-0 h-modal md:h-full flex items-center justify-center bg-black bg-opacity-50">
-                        <div class="relative p-4 w-full max-w-lg h-full md:h-auto">
-                            <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 md:p-8">
-                                <div class="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
-                                    <h3 class="mb-3 text-2xl font-bold text-gray-900 dark:text-white">Data Dari : <?= $userData['nama']?></h3>
-                                    <hr class="text-gray-600 mb-3">
-                                    <p>
-                                        <ul class="text-sm font-semibold bg-gradient-to-r from-slate-400 to-slate-500 bg-clip-text text-transparent dark:text-gray-400">
-                                            <li>Username : <?= $userData['username']?></li>
-                                            <li>Password : <?= $userData['password']?></li>
-                                            <li>Nama     : <?= $userData['nama']?></li>
-                                            <li>Level    : <?= $userData['level']?></li>
-                                        </ul>
-                                    </p>
-                                    <hr class="text-gray-600 mb-3 mt-3">
-                                </div>
-                                <div class="justify-between items-center pt-0 space-y-4 sm:flex sm:space-y-0">
-                                    <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">
-                                        <button onclick="location.href='<?= base_url('dashboard/user')?>'" id="closeButton" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
                     </tr>
                     <?php $no++; endforeach; ?>
                 </tbody>
@@ -229,27 +203,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    function showPopup(userDataId) {
-        var popup = document.getElementById("info-popup");
-        popup.classList.remove("hidden");
-
-        // Tambahkan kode berikut untuk menampilkan data yang sesuai dengan nomor yang diklik
-        var userData = <?= json_encode($userData) ?>;
-        var dataDari = document.getElementById("data-dari");
-        var username = document.getElementById("username");
-        var password = document.getElementById("password");
-        var nama = document.getElementById("nama");
-        var level = document.getElementById("level");
-
-        dataDari.innerText = "Data Dari: " + userData[userDataId]['nama'];
-        username.innerText = "Username: " + userData[userDataId]['username'];
-        password.innerText = "Password: " + userData[userDataId]['password'];
-        nama.innerText = "Nama: " + userData[userDataId]['nama'];
-        level.innerText = "Level: " + userData[userDataId]['level'];
-    }
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <script src="/tempatJS/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="/custom-js.js"></script>

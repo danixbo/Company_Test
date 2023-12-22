@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\BeritaModel;
 use App\Models\KontakModel;
 use App\Models\UserModel;
+use App\Models\ProdukModel;
 
 class HalamanController extends BaseController
 {
@@ -146,5 +147,25 @@ class HalamanController extends BaseController
 
         // Mengarahkan pengguna kembali ke halaman dashboard setelah berhasil menambahkan data
         return redirect()->to(base_url('/kontak'))->with('pesan', 'Pesan Anda Telah Disampaikan');
+    }
+    
+    public function produk()
+    {
+        $beritaModel = new ProdukModel();
+        $keyword = $this->request->getVar('keyword');
+
+        if ($keyword) {
+            $users = $beritaModel->like('nama_rumah', $keyword)
+                ->orLike('nomor_rumah', $keyword)
+                ->findAll();
+
+            $data['produk'] = $users;
+        } else {
+            $data['produk'] = $beritaModel->findAll();
+        }
+
+        $data['keyword'] = $keyword; // Ensure $keyword is defined
+
+        return view('Halaman/produk', $data);
     }
 }

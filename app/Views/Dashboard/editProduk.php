@@ -65,7 +65,7 @@
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="<?= base_url('/dashboard') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
@@ -102,7 +102,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-cart-plus-fill flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 16 16">
                     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
                 </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Produk</span>
+                <span class="ml-3 flex-1 ms-3 whitespace-nowrap">Produk</span>
                 </a>
             </li>
             <hr class="text-gray-600">
@@ -129,7 +129,7 @@
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <div class="container">
-            <form method="post" action="<?= base_url('dashboard/produk/update') ?>" enctype="multipart/form-data">
+            <form id="myForm" method="post" action="<?= base_url('dashboard/produk/update/' . $data['id']) ?>" enctype="multipart/form-data">
                 <?php if (session()->getFlashdata('error')) : ?>
                     <div class="alert alert-danger">
                         <?php
@@ -145,27 +145,27 @@
 
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="gambar_rumah">Upload Gambar</label>
-                    <input name="gambar_rumah" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file" accept="image/jpeg, image/jpg, image/png" required>
+                    <input name="gambar_rumah" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file" accept="image/jpeg, image/jpg, image/png" value="<?= $data['gambar_rumah'] ?>" required>
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPEG, PNG, JPG (MAX. 800x400px).</p>
                 </div>
                 <div class="mb-3">
                     <label for="nama_rumah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="nama_rumah" name="nama_rumah" placeholder="Pada Suatu Hari Ada Sosok Simajuntak" required>
+                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="nama_rumah" name="nama_rumah" placeholder="Pada Suatu Hari Ada Sosok Simajuntak" value="<?= $data['nama_rumah'] ?>" required>
                     <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Nama Hanya Boleh Alpha Numeric Contoh: ( A - Z | 1 - 9 )</p>
                 </div>
                 <div class="mb-3">
                     <label for="perlengkapan_rumah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Perlengkapan</label>
-                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bla Bla Bla Bla" id="perlengkapan_rumah" name="perlengkapan_rumah" required>
+                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bla Bla Bla Bla" id="perlengkapan_rumah" name="perlengkapan_rumah" value="<?= $data['perlengkapan_rumah'] ?>" required>
                     <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Lengkap / Tidak Lengkap (Keterangan Lain)</p>
                 </div>
                 <div class="mb-3">
                     <label for="harga_rumah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga Rumah</label>
-                    <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="harga_rumah" placeholder="Rp 000.000.000" required>
+                    <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="harga_rumah" placeholder="Rp 000.000.000" value="<?= $data['harga_rumah'] ?>" required>
                     <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Contoh : Rp 100.000.000</p>
                 </div>
                 <div class="mb-3">
                     <label for="nomor_rumah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Rumah</label>
-                    <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="nomor_rumah" placeholder="10" required>
+                    <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="nomor_rumah" value="<?= $data['nomor_rumah'] ?>" placeholder="10" required>
                     <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Nomor Rumah Anda. Jika tidak ada maka ketik saja 0</p>
                 </div>
                 <div class="d-flex mt-4">

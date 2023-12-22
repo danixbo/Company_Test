@@ -14,9 +14,8 @@
     <header id="header">
         <h1 class="logo">LOGO</h1>
         <nav class="navbar">
-            <a href="/">Beranda</a>
-            <a href="#itungan">Layanan</a>
-            <a href="#footer-profile">Berita</a>
+            <a href="/beranda">Beranda</a>
+            <a href="/produk">Produk</a>
             <a href="/kontak">Kontak</a>
         </nav>
         <!-- tombol login register -->
@@ -58,13 +57,12 @@
             <i class="fa-solid fa-bars"></i>
         </div>
         <div class="dropdown-menu">
-            <a href="index.html#intro">Beranda</a>
-            <a href="#itungan">Layanan</a>
-            <a href="#footer-profile">Berita</a>
-            <a href="#">Kontak</a>
+            <a href="/beranda">Beranda</a>
+            <a href="/produk">Produk</a>
+            <a href="/kontak">Kontak</a>
         <?php if (!session()->has('user_id')): ?>
-            <a href="login">Login</a> 
-            <a href="register">Register</a>
+            <a href="/login">Login</a> 
+            <a href="/register">Register</a>
         <?php else: ?>
             <a href="<?= base_url('dashboard/kontak') ?>">Dashboard</a>
             <a href="<?= base_url('dashboard/profile') ?>">Settings</a>

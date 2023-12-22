@@ -9,7 +9,7 @@ body {
 }
 
 body {
-    background: #3b444b;
+    background: #053B50;
 }
 /* <----------------------------------------- NAVBAR -----------------------------------------> */
 
@@ -53,11 +53,12 @@ header {
 }
 
 .logo {
+    /* margin-top: 10px; */
     font-size: 30px;
     font-weight: 700;
     cursor: pointer;
     transition: all .5s ease 0s;
-    color: #333333;
+    color: #eaeaea;
 }
 
 .logo:hover {
@@ -156,132 +157,179 @@ header {
     font-weight: 600;
 }
 
-/* <----------------------------------------- KONTAK -----------------------------------------> */
+/* <----------------------------------------- PRODUK -----------------------------------------> */
 
-.kontak {
-    width: 100%;
-    height: 100vh;
+.container {
     display: flex;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
-} 
-.mail {
-    cursor: pointer;
-    margin: 15px 150px;
-    color: #232b2b;
-    width: 250px;
-    height: 6%;
+}
+
+.content {
+    width: 70%;
+    height: 100vh;
     display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
-.icons {
-    text-align: right;
-    cursor: pointer;
+.title {
+    text-align: center;
 }
 
-.icons i {
-    color: black;
-    font-size: 40px;
-    margin-right: 120px;
+.kotak-rumah {
+    background: white;
+    border-radius: 9px;
+    padding: 20px ;
+    width: 25rem;
+    height: max-content;
+    border: 1px solid black;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    -ms-border-radius: 9px;
+    -o-border-radius: 9px;
 }
 
-.isian {
-    transition: color .3s ease;
-    display: flex;
-    margin-top: 5px;
-    text-decoration: none;
-    color: #232b2b;
-}
-.isian:hover {
-    color: #0f9a6b;
-}
-
-.hehe {
-    margin-top: 5px;
+.kotak-rumah img {
+    width: 730px;
+    height: 250px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
-.isian i {
-    margin: 0px 20px;
-    font-size: 40px;
-}
-
-
-.kotak-kontak {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background: #232b2b;
-    /* background: radial-gradient(circle at right bottom, #deeee4 , #fdeeea); */
-    padding: 20px;
-    width: 25%;
-    height: 490px;
-    border-radius: 16px;
-    /* border: 1px solid black; */
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.kotak-kontak input {
-    width: 100%;
-    margin: 10px 0px;
-    box-shadow: 0px 0px 10px 0px rgba(0,255,255,0.7); 
-    color: white;
-    transition: all ease 0.2s;
-    background: #3b444b;
-    outline: none;
-    border-radius: 12px;
-    border: none;
-    padding: 0px 10px;
-    height: 40px;
-}
-
-.kotak-kontak input:focus,
-.kotak-kontak textarea:focus {
-    transform: translateY(-5px);
-    box-shadow: 0px 10px 20px 2px rgba(0,255,255,0.7);
-}
-
-.kotak-kontak input::placeholder {
-    color: white;
-}
-.kotak-kontak textarea::placeholder {
-    color: white;
-}
-
-.kotak-kontak textarea {
-    width: 100%;
-    box-shadow: 0px 0px 10px 0px rgba(0,255,255,0.7); 
-    border-radius: 12px;
-    transition: all ease 0.2s;
-    color: white;
-    background: #3b444b;
-    height: 100px;
-    padding: 10px;
-    resize: none;    
-    outline: none;
-    border: none;
-    margin: 10px 0px;
-}
-
-.kotak-kontak button {
-    width: 100%;
-    background:   #3c89d0;
-    color: white;
-    cursor: pointer;
-    height: 60px;
-    border-radius: 12px;
-    border: none;
+.kotak-rumah a button {
+    border-radius: 8px;
+    background: #333333;
     transition: all .5s ease;
+    color: white;
+    margin-top: 15px;
+    width: 50%;
+    height: 40px;
+    /* border: 1px solid black; */
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    -webkit-transition: all .5s ;
+    -moz-transition: all .5s ;
+    -ms-transition: all .5s ;
+    -o-transition: all .5s ;
 }
 
-.kotak-kontak button:hover {
-    background: linear-gradient(to right, #3c89d0, rgba(0,255,255,0.7));
+.kotak-rumah a button:hover {
+    background: #eaeaea;
+    color: #333333;
 }
 
-.address-kontak {
-    text-align: right;
+.nama-rumah {
+    margin: 10px 0px;
+    font-size: large;
+    font-weight: 600;
+}
+
+ul li {
+    margin: 5px 0px;
+}
+
+
+
+
+
+
+/* <----------------------------------------- ANIMASI -----------------------------------------> */
+
+.reveal{
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 2s all ease;
+}
+.reveal.active{
+    transform: translateY(0);
+    opacity: 1;
+}
+.active.fade-bottom {
+    animation: fade-bottom 1s ease-in;
+}
+.active.fade-left {
+    animation: fade-left 1s ease-in;
+}
+.active.fade-right {
+    animation: fade-right 1s ease-in;
+}
+.active.fade-right-delay-1 {
+    animation: fade-right 1.2s ease-in;
+}
+.active.fade-right-delay-2 {
+    animation: fade-right 1.4s ease-in;
+}
+.active.fade-right-delay-3 {
+    animation: fade-right 1.6s ease-in;
+}
+
+@keyframes fade-top {
+	0% {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fade-bottom {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes fade-left {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes fade-right {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 /* <----------------------------------------- RESPONSIVE -----------------------------------------> */
+
+
+@media screen and (max-width: 1071px) {
+
+    .intro {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 250px 100px;
+    }
+}
 
 @media screen and (max-width: 1468px) {
     .logo {

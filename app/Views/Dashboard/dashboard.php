@@ -64,7 +64,7 @@
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="<?= base_url('/dashboard') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
@@ -101,7 +101,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-cart-plus-fill flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 16 16">
                     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
                 </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Produk</span>
+                <span class="ml-3 flex-1 ms-3 whitespace-nowrap">Produk</span>
                 </a>
             </li>
             <hr class="text-gray-600">
@@ -147,7 +147,41 @@
                 </div>
                 <div class="w-2/5 items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                     <div class="w-full">
-                        <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Rumah terjual</h3>
+                        <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Rumah Ditambahkan</h3>
+                        <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">2,340</span>
+                        <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                        <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path clip-rule="evenodd" fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"></path>
+                            </svg>
+                            12.5% 
+                        </span>
+                        Sejak bulan lalu
+                        </p>
+                    </div>
+                    <div class="w-full" id="new-products-chart"></div>
+                </div>
+            </div>
+            <div class="user-intro container flex justify-between mt-5">
+                <div class="w-2/5 items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                    <div class="w-full">
+                        <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Akun Telah Dibuat</h3>
+                        <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">2,340</span>
+                        <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                        <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path clip-rule="evenodd" fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z"></path>
+                            </svg>
+                            12.5% 
+                        </span>
+                        Sejak bulan lalu
+                        </p>
+                    </div>
+                    <div class="w-full" id="new-products-chart"></div>
+                </div>
+                <div class="w-2/5 items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                    <div class="w-full">
+                        <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Berita Ditambahkan</h3>
                         <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">2,340</span>
                         <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
                         <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
@@ -169,7 +203,7 @@
                 <div class="flex justify-between">
                     <div>
                     <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Pengunjung Website</p>
+                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Total Akun</p>
                     </div>
                     <div
                     class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
@@ -256,7 +290,7 @@
         },
         series: [
             {
-            name: "Total Pengunjung",
+            name: "Total Akun",
             data: [6500, 6418, 6456, 6526, 6356, 6456, 6590],
             color: "#1A56DB",
             },

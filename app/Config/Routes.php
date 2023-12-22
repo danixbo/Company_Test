@@ -15,7 +15,7 @@ $routes->get('/kontak', 'HalamanController::kontak');
 $routes->post('/kontak/tambah', 'HalamanController::tambahFunction');
 $routes->get('/register', 'HalamanController::register');
 $routes->post('/register/prosesRegister', 'HalamanController::tambahUser');
-$routes->get('/rumah', 'RumahController::index');
+$routes->get('/produk', 'HalamanController::produk');
 
 // <------------------------------ DASHBOARD ------------------------------>
 
@@ -47,7 +47,7 @@ $routes->get('/dashboard/berita', 'BeritaController::dashboardBerita');
 $routes->post('/dashboard/berita', 'BeritaController::dashboardBerita');
 $routes->get('/dashboard/berita/delete/(:num)', 'BeritaController::delete/$1');
 $routes->get('/dashboard/berita/edit/(:num)', 'BeritaController::edit/$1');
-$routes->post('/dashboard/berita/edit/(:num)', 'BeritaController::update/$1');
+$routes->post('/dashboard/berita/update/(:num)', 'BeritaController::update/$1');
 $routes->get('/dashboard/berita/tambah', 'BeritaController::tambahBerita');
 $routes->post('/dashboard/berita/tambah', 'BeritaController::tambahFunction');
 
@@ -59,7 +59,7 @@ $routes->get('/dashboard/produk/tambah', 'ProdukController::tambahProduk');
 $routes->post('/dashboard/produk/tambah', 'ProdukController::tambahFunction');
 $routes->get('/dashboard/produk/delete/(:num)', 'ProdukController::delete/$1');
 $routes->get('/dashboard/produk/edit/(:num)', 'ProdukController::edit/$1');
-$routes->post('/dashboard/produk/edit/(:num)', 'ProdukController::update/$1');
+$routes->post('/dashboard/produk/update/(:num)', 'ProdukController::update/$1');
 
 // <------------------------------ PROFILE ------------------------------>
 
