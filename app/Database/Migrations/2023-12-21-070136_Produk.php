@@ -28,7 +28,7 @@ class Migration_Produk extends Migration
             ],
             'harga_rumah' => [
                 'type' => 'DECIMAL',
-                'constraint' => '10,2',
+                'constraint' => '12,2',
             ],
             'nomor_rumah' => [
                 'type' => 'VARCHAR',

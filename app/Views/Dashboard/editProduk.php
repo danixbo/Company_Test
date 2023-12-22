@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="/tempatCSS/customCSS/edit.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="/tempatCSS/bootstrap/bootstrap.rtl.min.css"> -->
+    <link rel="stylesheet" href="/custom-css.css">
+    <link rel="stylesheet" href="/tempatCSS/bootstrap/bootstrap.rtl.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"  rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body style="font-family:Poppins,sans-serif;">
+<body>
 
 <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -29,7 +33,7 @@
             </a>
         </div>
         <div class="flex items-center">
-            <div class="flex items-center ms-3">    
+            <div class="flex items-center ms-3">
                 <div>
                     <button type="button" id="logout-button" class="text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                         <span class="sr-only">Open user menu</span>
@@ -121,50 +125,62 @@
         </ul>
     </div>
 </aside>
+
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <div class="container">
-            <form id="myForm" method="post" action="<?= base_url('dashboard/kontak/update/' . $data['id']) ?>">
+            <form method="post" action="<?= base_url('dashboard/produk/update') ?>" enctype="multipart/form-data">
                 <?php if (session()->getFlashdata('error')) : ?>
                     <div class="alert alert-danger">
-                        <?= session()->getFlashdata('error') ?>
+                        <?php
+                        $errorData = session()->getFlashdata('error');
+
+                        // Check if it's an array, if not, convert it to an array
+                        $errorArray = is_array($errorData) ? $errorData : [$errorData];
+
+                        echo implode('<br>', $errorArray);
+                        ?>
                     </div>
                 <?php endif; ?>
+
                 <div class="mb-3">
-                    <label for="disableInput_id" class="form-label">ID</label>
-                    <input type="text" class="form-control" id="disableInput_id" name="id" value="<?= $data['id'] ?>" disabled>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="gambar_rumah">Upload Gambar</label>
+                    <input name="gambar_rumah" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file" accept="image/jpeg, image/jpg, image/png" required>
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPEG, PNG, JPG (MAX. 800x400px).</p>
                 </div>
                 <div class="mb-3">
-                    <label for="disableInput_nama" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="disableInput_nama" name="nama" value="<?= $data['nama'] ?>" required>
+                    <label for="nama_rumah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="nama_rumah" name="nama_rumah" placeholder="Pada Suatu Hari Ada Sosok Simajuntak" required>
+                    <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Nama Hanya Boleh Alpha Numeric Contoh: ( A - Z | 1 - 9 )</p>
                 </div>
                 <div class="mb-3">
-                    <label for="disableInput_email" class="form-label">Alamat Email</label>
-                    <input type="email" class="form-control" id="disableInput_email" name="email" value="<?= $data['email'] ?>" required>
+                    <label for="perlengkapan_rumah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Perlengkapan</label>
+                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bla Bla Bla Bla" id="perlengkapan_rumah" name="perlengkapan_rumah" required>
+                    <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Lengkap / Tidak Lengkap (Keterangan Lain)</p>
                 </div>
                 <div class="mb-3">
-                    <label for="disableInput_subject" class="form-label">Subject</label>
-                    <input type="text" class="form-control" id="disableInput_subject" name="subject" value="<?= $data['subject'] ?>" required>
+                    <label for="harga_rumah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga Rumah</label>
+                    <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="harga_rumah" placeholder="Rp 000.000.000" required>
+                    <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Contoh : Rp 100.000.000</p>
                 </div>
                 <div class="mb-3">
-                    <label for="disableInput_pesan" class="form-label">Pesan</label>
-                    <input type="text" class="form-control" id="disableInput_pesan" name="pesan" value="<?= $data['pesan'] ?>" required>
+                    <label for="nomor_rumah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Rumah</label>
+                    <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="nomor_rumah" placeholder="10" required>
+                    <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Nomor Rumah Anda. Jika tidak ada maka ketik saja 0</p>
                 </div>
                 <div class="d-flex mt-4">
                     <button type="submit" name="submitEdit" class="btn btn-success mr-3 bg-green-500 hover:bg-green-700 border-none " onclick="return validateForm()">Submit</button>
-                    <a href="<?= base_url('dashboard/kontak') ?>" class="btn btn-primary">Kembali</a>
+                    <a href="<?= base_url('dashboard/produk') ?>" class="btn btn-primary">Kembali</a>
                 </div>
+
             </form>
         </div>
     </div>
 </div>
 
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
-    <script src="TempatJS/bootstrap/bootstrap.bundle.min.js"></script>
-    <!-- <script src="TempatJS/customJs/script.js"></script> -->
-    <script src="custom-js.js"></script>
+    <script src="/tempatJS/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/custom-js.js"></script>
 </body>
 
 </html>

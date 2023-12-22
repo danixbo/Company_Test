@@ -51,6 +51,16 @@ $routes->post('/dashboard/berita/edit/(:num)', 'BeritaController::update/$1');
 $routes->get('/dashboard/berita/tambah', 'BeritaController::tambahBerita');
 $routes->post('/dashboard/berita/tambah', 'BeritaController::tambahFunction');
 
+// <------------------------------ DASHBOARD PRODUK ------------------------------>
+
+$routes->get('/dashboard/produk', 'ProdukController::index');
+$routes->post('/dashboard/produk', 'ProdukController::index');
+$routes->get('/dashboard/produk/tambah', 'ProdukController::tambahProduk');
+$routes->post('/dashboard/produk/tambah', 'ProdukController::tambahFunction');
+$routes->get('/dashboard/produk/delete/(:num)', 'ProdukController::delete/$1');
+$routes->get('/dashboard/produk/edit/(:num)', 'ProdukController::edit/$1');
+$routes->post('/dashboard/produk/edit/(:num)', 'ProdukController::update/$1');
+
 // <------------------------------ PROFILE ------------------------------>
 
 $routes->get('/dashboard/profile', 'ProfileController::index');
